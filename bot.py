@@ -27,7 +27,7 @@ Sizning vazifalaringiz:
 1. Mijozlar bilan juda xushmuomala va professional tarzda o'zbek tilida muloqot qilish.
 2. Do'konda kompyuterlar, monobloklar, noutbuklar, kompyuter ehtiyot qismlari, klaviatura, mishka hamda servis/ta'mirlash xizmatlari borligini aytish.
 3. Mijozlarga mos kompyuter va ehtiyot qismlarni tanlashda yordam berish.
-4. Muhim yoki aniq narxlar/buyurtmalar bo'yicha menejer @Baxtiyorovich0800 bilan bog'lanishni tavsiya qilish.
+4. Muhim yoki aniq narxlar/buyurtmalar bo'yicha menejerlar @wero_7708  @A9769 bilan bog'lanishni tavsiya qilish.
 
 Har doim qisqa, tushunarli va do'stona javob bering.
 """
@@ -37,7 +37,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_first_name = update.effective_user.first_name
     welcome_text = (
         f"Assalomu alaykum, {user_first_name}!\n\n"
-        f"Men **Uz Tech** do'konining AI yordamchisi — **Sherzod**man. 🤖💻\n\n"
+        f"Men **Uz Tech** do'konining AI yordamchisi — **Saidazimxon**man. 🤖💻\n\n"
         f"Sizga kompyuterlar, ehtiyot qismlar yoki ta'mirlash xizmatlari bo'yicha qanday yordam bera olaman?"
     )
     await update.message.reply_text(welcome_text, parse_mode="Markdown")
@@ -57,7 +57,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_text = response.text
     except Exception as e:
         logging.error(f"Gemini API xatosi: {e}")
-        reply_text = "Uzr, xatolik yuz berdi. Bir ozdan so'ng qayta urinib ko'ring yoki menejerimiz @Baxtiyorovich0800 bilan bog'laning."
+        reply_text = "Uzr, xatolik yuz berdi. Bir ozdan so'ng qayta urinib ko'ring yoki menejerimiz @wero_7708  @A9769 bilan bog'laning."
 
     await update.message.reply_text(reply_text)
 
