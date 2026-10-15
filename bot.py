@@ -17,13 +17,10 @@ logging.basicConfig(
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
-# Kanalingiz useri (bot shu yerdagi xabarlarni o'qiydi)
-CHANNEL_USERNAME = "@uztech_computers"
-
 # Gemini mijozini yaratish
 client = genai.Client(api_key=GEMINI_API_KEY)
 
-# Render bepul ishlashi uchun soxta Web Server
+# Render port xatosini oldini olish uchun soxta Web Server
 class HealthCheckHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -37,7 +34,7 @@ def run_dummy_server():
 
 # Manzil va ismlarga to'g'ri berkitilgan havolali kontaktlar dizayni
 CONTACT_INFO = """
-📍 **Do'konimiz manzili:** Farg'ona shahri ([Google Maps lokatsiyasi](https://goo.gl/maps/NeV8ogH4ARYnovWi6))
+📍 **Do'konimiz manzili:** ([Farg'ona shahri B.Marg`iloniy 69-uy](https://goo.gl/maps/NeV8ogH4ARYnovWi6))
 
 👨🏼‍⚖️ **SOTUV MENEJERLARI:**
 • 📞 [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)
@@ -48,54 +45,44 @@ CONTACT_INFO = """
 • 📸 [Instagram sahifamiz](https://www.instagram.com/uzteck/)
 """
 
-# Saidazimxon botining yo'riqnomasi
+# Saidazimxon botining xarakteri va yo'riqnomasi (Xuddi insondek, erkin va aqlli muloqot uchun)
 SYSTEM_INSTRUCTION = """
-Siz "Uz Tech" kompyuter do'konining xushmuomala, aqlli va tajribali sun'iy intellekt qabulxonachisisiz. Ismingiz — Saidazimxon.
-Do'koningiz Farg'ona shahrida joylashgan.
+Siz "Uz Tech" kompyuter do'konining xushmuomala, bilimdon va samimiy sun'iy intellekt yordamchisisiz. Ismingiz — Saidazimxon. 
+Do'konimiz Farg'ona shahrida joylashgan.
 
-Qoidalar:
-1. Mijozlar bilan o'zbek tilida, juda xushmuomala va professional tarzda muloqot qiling.
-2. Sizga @uztech_computers kanalingizdagi so'nggi tovarlar va ularning tavsiflari beriladi. Mijoz biror mahsulot so'rasa, kanal ma'lumotlariga tayanib unga mos tovarlarni xarakteristikasi bilan tavsiya qiling.
-3. Agar mijoz salom bersa, xushmuomala javob qaytaring va nima qidirayotganini so'rang.
-4. Aniq narxlar, chegirmalar va buyurtmalar bo'yicha menejerlarimiz [Elmurod](https://t.me/wero_7708) yoki [Axrorbek](https://t.me/A9769) bilan bog'lanishni tavsiya qiling.
+Muloqot uslubingiz va qoidalaringiz:
+1. Xuddijonli inson kabi samimiy, iliq, o'zbek tilida ravon va qiziqarli muloqot qiling. Robotga o'xshab quruq gapirmang.
+2. @uztech_computers kanalimizga qo'yiladigan barcha turdagi noutbuklar, kompyuterlar, printerlar, videokartalar, protsessorlar, operativkalar va ehtiyot qismlarni yaxshi bilasiz. Mijoz qanday texnika so'rasa, uning xarakteristikasini tushuntiring, qaysi maqsadlarga (o'yin, o'qish, office, render) mos kelishini maslahat bering.
+3. Agar mijoz salom bersa, xushmuomala bilan hol-ahvol so'rab, qanday texnika qidirayotganini iliq kutib oling.
+4. Aniq narxlar, chegirmalar, zakaz berish va batafsil kelishish uchun doimo menejerlarimiz [Elmurod](https://t.me/wero_7708) yoki [Axrorbek](https://t.me/A9769) bilan bog'lanishni tavsiya qiling.
 """
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """/start buyrug'iga javob"""
     user_first_name = update.effective_user.first_name
     welcome_text = (
-        f"Assalomu alaykum, {user_first_name}!\n\n"
-        f"Men **Uz Tech** do'konining AI yordamchisi — **Saidazimxon**man. 🤖💻\n\n"
-        f"Sizga noutbuklar, kompyuterlar, printerlar yoki ta'mirlash xizmatlari bo'yicha qanday yordam bera olaman?"
+        f"Assalomu alaykum, {user_first_name} aka!\n\n"
+        f"Men **Uz Tech** do'konining sun'iy intellekt yordamchisi — **Saidazimxon**man. 🤖💻\n\n"
+        f"Sizga qanday kompyuter, noutbuk yoki ehtiyot qismlar bo'yicha yordam kerak? Istalgan savolingizni berishingiz mumkin!"
     )
     await update.message.reply_text(welcome_text, parse_mode="Markdown", disable_web_page_preview=True)
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Mijoz xabarlariga kanal ma'lumotlarini qo'shib javob berish"""
+    """Mijoz xabarlariga Gemini AI orqali erkin va aqlli javob berish"""
     user_text = update.message.text
     text_lower = user_text.lower()
     
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
     
     # Manzil yoki lokatsiya so'ralganda tayyor kontaktlarni chiqaradi
-    if any(word in text_lower for word in ["manzil", "adres", "lokatsiya", "lokatsya", "qayerda", "qayerdasiz", "kontakt", "telefon"]):
+    if any(word in text_lower for word in ["manzil", "adres", "lokatsiya", "lokatsya", "qayerda", "qayerdasiz", "kontakt", "telefon", "nomir"]):
         await update.message.reply_text(CONTACT_INFO, parse_mode="Markdown", disable_web_page_preview=True)
         return
 
-    # Kanaldagi so'nggi postlarni o'qib olishga harakat qilamiz
-    channel_posts_text = ""
     try:
-        # Bot kanal admini bo'lsa, oxirgi xabarlarni olishi mumkin
-        chat = await context.bot.get_chat(CHANNEL_USERNAME)
-        # Eslatma: Telegram botlar kanaldagi barcha eski xabarlarni to'g'ridan-to'g'ri o'qiy olmaydi, 
-        # shuning uchun AIga kanalimiz borligini va u yerdagi mahsulotlarni tahlil qilishini uqtiramiz.
-        channel_info_note = f"Do'konning rasmiy kanali: {CHANNEL_USERNAME}. Kanaldagi oxirgi tovarlar va ehtiyot qismlar assortimentiga asoslanib javob ber."
-    except Exception as e:
-        logging.warning(f"Kanalni o'qishda ogohlantirish (bot admin bo'lishi kerak): {e}")
-        channel_info_note = f"Do'kon kanali: {CHANNEL_USERNAME}."
-
-    try:
-        prompt = f"{SYSTEM_INSTRUCTION}\n\n{channel_info_note}\n\nMijoz savoli: {user_text}\nSaidazimxon:"
+        # Gemini API orqali to'g'ridan-to'g'ri o'qitilgan xarakterda javob olamiz
+        prompt = f"{SYSTEM_INSTRUCTION}\n\nMijozning xabari: {user_text}\nSaidazimxon javobi:"
+        
         response = client.models.generate_content(
             model="gemini-2.5-flash",
             contents=prompt
@@ -103,12 +90,13 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_text = response.text
     except Exception as e:
         logging.error(f"Gemini API xatosi: {e}")
+        # Zaxira holat uchun tabiiy matn
         if "salom" in text_lower or "assalom" in text_lower:
-            reply_text = "Assalomu alaykum! Uz Tech do'koniga xush kelibsiz. Sizga qanday texnika yoki noutbuk bo'yicha yordam kerak?"
+            reply_text = "Va alaykum assalom! Uz Tech do'koniga xush kelibsiz. Qanday texnika qidirayotgan edingiz, bemalol ayting."
         else:
             reply_text = (
-                f"Ha, albatta! {CHANNEL_USERNAME} kanalimizdagi barcha turdagi noutbuklar va texnikalar do'konimizda mavjud.\n\n"
-                f"Aniq narxlar va buyurtma uchun menejerlarimizga murojaat qiling:\n"
+                f"Ha, albatta! Ayni paytda @uztech_computers kanalimizda ko'plab noutbuklar va kompyuter jihozlari mavjud.\n\n"
+                f"Aniq narxlar va buyurtma berish uchun menejerlarimiz bilan bog'lanishingiz mumkin:\n"
                 f"• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
                 f"• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
             )
