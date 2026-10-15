@@ -53,60 +53,58 @@
 - AVT 2000W AVR
 
 === НОУТБУК AIO ===
-- HP OmniBook 3 Laptop 14-hu0000ca Intel® N-series - N150 /DDR5 4GB RAM/ 128 GB UFS / 35.6 cm (14"), 2K (1920 x 1200) / Windows 11 Home Memory4 GB RAMIntel® N-series - N150 Memory4 GB RAM
-- HP 15-fc0122nia (0J8) (AMD Ryzen 5-7520U/ DDR4 8GB/ SSD 512GB/ 15,6" FHD LED/ AMD Radeon Graphics/ Backlit/ NoOS/ RU) Silver (AE0J8EA)
-- HP 15-fd0912tu (5YZ) (Intel Core 5-120U/ DDR5 8GB/ SSD 512GB/ 15.6" FHD LED/ Intel UHD Graphics/ Backlit/ NoOS/ RU) Silver (D35YZPA)
-- HP OmniBook Flip 5 14-FP0013DX ( 14" 2K IPS 300nit Multitouch | Core™ 5-120U | LPDDR5 8GB | SSD 512GB )
-- HP OmniBook 5 Flip 14-fp0023dx (14" IPS WUXGA 300nits | Core™ 7-150U | LPDDR5 16GB | SSD 512GB)
-- HP OmniBook X Flip 14-fm0013dx (UJ1) (Intel Core Ultra 5-226v/ DDR5 16GB/ SSD 512GB/ 14" WUXGA Touchscreen/ Integrated Intel® Arc 130V/ Backlit/ Win11H/ Eng) Blue (B5UJ1UA)
-- HP OmniBook 3 16-by0015dx (NF2) (AMD Ryzen 5-40/ DDR5 8GB/ SSD 256GB/ 16" 2K Touch/ Integrated AMD Radeon 610M/ Win11/ Eng) Glacier Silver (D7NF2UA)
-- HP Victus 15-fa2013dx (5WH) (Intel Core i5-13420H/ DDR4 8GB/ SSD 512GB/ 15,6" FHD 144Hz/ 6GB GF RTX3050/ Backlit/ Win11/ RU) Black (B95WHUA)
-- HP 15-FD1355TU Intel Core 5-120U / 8 ГБ / 256 ГБ / 15.6″ FHD IPS / Silver
-- Acer Aspire 1 A114-33-C13A 14", Intel Celeron N4500 /4ГБ DDR4 / ssd 128ГБ Flash/ 14" 1366х768 пикселей
-- Acer Gadget E10 (AMD Ryzen 5-3500/ DDR4 8GB/ SSD 256GB/ 15.6 FHD IPS/ AMD Radeon Graphics/ Backlit/ Win11/ RU) Grey (ZL.OTH11.03U)
-- Acer Aspire Go 15 (Intel Core i3-N355/ DDR5 8GB/ UFS 128GB/ 15.6" FHD/ Intel UHD Graphics/ Win11/ RU) Steel Gray (NX.JJLAA.001)
-- Acer Aspire Lite AL15-52P (Intel Celeron N4500/ DDR4 8GB/ SSD 512GB/ 15.6 FHD IPS/ Intel UHD Graphics/ NoOS/ RU) Silver (NX.JB8ER.001) (официальный)
-- Acer Aspire Lite AL16-54P (Intel Core i3-1305U/ DDR5 8GB/ SSD 256GB/ 16" WUXGA IPS/ Intel UHD Graphics/ NoOS/ RU) Silver (NX.JN0EM.001)
-- Acer Aspire Go 15 (AMD Ryzen 5-7520U/ DDR5 8GB/ SDD 512GB/ 15.6" FHD IPS Touch/ AMD Radeon Graphics/ Win11/ RU) Silver (NX.JJJAA.004)
-- Acer Nitro 5 AN515-58-56W4 Core i5 12500H DDR4 8Gb SSD512Gb NVIDIA GeForce RTX 3050 4Gb 15.6" IPS FHD (1920x1080) Eshell black WiFi BT Cam (NH. QFJER.002)
-- Acer Nitro 5 AN515-58-56W4 Core i5 12500H DDR4 16Gb SSD512Gb NVIDIA GeForce RTX 3050 4Gb 15.6" IPS FHD (1920x1080) Eshell black WiFi BT Cam (NH. QFJER.002)
-- Lenovo IdeaPad 1 15IJL7 (Intel Celeron N4500/ DDR4 8GB/ SSD 256GB/ 15.6 FHD LCD/ Intel UHD Graphics/ No DVD/ DOS/ RU) Cloud Grey (82LX00D7PS)
-- Laptop Lenovo Yoga 7 2 en 1 Intel Core Ultra 7 155U 16 GB DDR5 RAM 1TB SSD 16" WUXGA
-- ASUS Vivobook Go 15 (Intel Core i3-N305/ DDR4 8GB/ SSD 256GB/ 15,6" FHD/ Intel UHD Graphics/ Win11/ RU) Silver (90NB0ZT1-M02580 / E1504GA-WS35)
-- ASUS Vivobook Go 15 (AMD Ryzen 3-30/ DDR5 8GB/ SSD 512GB/ 15.6" FHD IPS/ AMD Radeon 610M/ NoOS/ RU) Black (90NB0ZR2-M056N0 / E1504FA-BQ3391)
-- ASUS Zenbook Q415MA Intel Core Ultra 5-125H| DDR5 8GB| SSD 512GB| 14″ WUXGA OLED Touch| Intel UHD Graphics| Win11| RU| Grey
-- ASUS TUF Gaming A18 (AMD Ryzen 7-260/ DDR5 16GB/ SSD 512GB/ 18,0" FHD 144Hz/ 8GB GF RTX5060/ Backlit/ NoOS/RU) Jaeger Gray (90NR0NN1-M001M0 / FA808UM-S8030)
-- Dell Vostro 3520 (Intel Core i5-1235U/ DDR4 8GB/ SSD 512GB/ 15.6 Full HD LCD/ Intel UHD Graphics/ NoOS/ RU) Black
-- Dell Inspiron 15 3530 (Intel Core i5-1334U/ DDR4 8GB/ SSD 512GB/ 15.6” FHD LCD 120hz/ Intel UHD Graphics/ Backlit/ NoOS/ RU) Black (официальный)
-- Chuwi GemiBook Plus CWI629 (Intel Pentium Silver N5030/ DDR4 8GB/ SSD 256GB/ 15.6" FHD/ Intel UHD Graphics/ Win11/ RU) Silver
-- Apple Macbook Neo 13 (A18 Pro/ 6 CPU/ 5 GPU/ LPDDR 8GB/ SSD 256GB/ 13 IPS 2408×1506/ RU) (Z1TU00020/MHFH4)
-- Lenovo V50a-24IMB AIO (Intel Core i5-10400T/ DDR4 8GB/ SSD 256GB/ 23,8 IPS FHD LCD/ Integrated Intel UHD Graphics/ Keyboard+mouse/ NoOS/ RU) Raven Black (11FJ00AJRU)
-- Lenovo IdeaCentre 3 24ITL6 / 23.8" FHD / Intel Core i5-1135G7 / 8GB DDR / 1T HDD Black - F0G0008XAX
-- HP 24-cb1004l (2K4) (Intel Core i5-1235U/ DDR4 8GB/ SSD 512GB/ 23,8 FHD/ Intel Iris Xe Graphics/ No DVD/ key + mouse/ NoOS/ RU) White (9S2K4PA)
-- HP 24-cr0011l (8L2) (Intel Core i5-1335U/ DDR4 8GB/ SSD 512GB/ 23,8 FHD/ Intel Iris Xe Graphics/ No DVD/ key + mouse/ NoOS/ RU) White (AV8L2PA)
-- HP 24-cr0264l (RS0) (AMD Ryzen 5-7520U/ DDR5 8GB/ SSD 512GB/ 23,8 FHD/ AMD Radeon Graphics/ No DVD/ key + mouse/ NoOS/ RU) White (A4RS0EA)
-- HP 27-cr0008l (JC2) (Intel Core i5-1335U/ DDR4 16Gb/ SSD 512Gb/ 27" FHD IPS/ Intel Iris Xe Graphics/ key+mouse/ NoOS/ RU) White (B7JC2PA)
-- NONEM 24" IPS H61 ( Вебкамера WiFi) black
-- Xtech 24" IPS H610 Flat Model: S238 Flat ( Вебкамера WiFi M.2 nvme) white
-- Баребон AVTECH F2 (Touch screen) WITH MOTHERBOARD H310D4
-- Uz computers sumka 15,6
-- WiWU Vivi Laptop Handbag с ручками 15.6
-- Wiwu Hali Laptop Sleeve 14 дюйм
-- Wiwu Hali Laptop Sleeve 16 дюйм
-- Wiwu Alpha Double Layer 14 черная | Xline Parts
-- wiwu minimalist BAG 15,6
-- wiwu Alpha Slim Sleeve
-- WIWU Pioneer HandBag
-- WIWU Skin Armor Sleeve
-- WIWU 14 Hali Vertical Layer Bag
-- WIWU Ora Tote 16
-- WIWU Cozy Classic Case 16 inch
-- back pack 166 рюкзак для ноутбука 15,6 blek
-- Рюкзак Wiwu Pilot 15,6”
-- Рюкзак Wiwu Minimalist Минималистичный водонепроницаемый рюкзак Wiwu
-- Сумкача travolik 008
-- Сумкача travolik 1188 belga
-- Noutbook chexol 15.6
+- Ноутбук HP OmniBook 3 Laptop 14-hu0000ca Intel® N-series - N150 /DDR5 4GB RAM/ 128 GB UFS / 35.6 cm (14"), 2K (1920 x 1200) / Windows 11 Home Memory4 GB RAMIntel® N-series - N150 Memory4 GB RAM
+- Ноутбук HP 15-fc0122nia (0J8) (AMD Ryzen 5-7520U/ DDR4 8GB/ SSD 512GB/ 15,6" FHD LED/ AMD Radeon Graphics/ Backlit/ NoOS/ RU) Silver (AE0J8EA)
+- Ноутбук HP 15-fd0912tu (5YZ) (Intel Core 5-120U/ DDR5 8GB/ SSD 512GB/ 15.6" FHD LED/ Intel UHD Graphics/ Backlit/ NoOS/ RU) Silver (D35YZPA)
+- Ноутбук HP OmniBook Flip 5 14-FP0013DX ( 14" 2K IPS 300nit Multitouch | Core™ 5-120U | LPDDR5 8GB | SSD 512GB )
+- Ноутбук HP OmniBook 5 Flip 14-fp0023dx (14" IPS WUXGA 300nits | Core™ 7-150U | LPDDR5 16GB | SSD 512GB)
+- Ноутбук HP OmniBook X Flip 14-fm0013dx (UJ1) (Intel Core Ultra 5-226v/ DDR5 16GB/ SSD 512GB/ 14" WUXGA Touchscreen/ Integrated Intel® Arc 130V/ Backlit/ Win11H/ Eng) Blue (B5UJ1UA)
+- Ноутбук HP OmniBook 3 16-by0015dx (NF2) (AMD Ryzen 5-40/ DDR5 8GB/ SSD 256GB/ 16" 2K Touch/ Integrated AMD Radeon 610M/ Win11/ Eng) Glacier Silver (D7NF2UA)
+- Ноутбук HP Victus 15-fa2013dx (5WH) (Intel Core i5-13420H/ DDR4 8GB/ SSD 512GB/ 15,6" FHD 144Hz/ 6GB GF RTX3050/ Backlit/ Win11/ RU) Black (B95WHUA)
+- Ноутбук HP 15-FD1355TU Intel Core 5-120U / 8 ГБ / 256 ГБ / 15.6″ FHD IPS / Silver
+- Ноутбук Acer Aspire 1 A114-33-C13A 14", Intel Celeron N4500 /4ГБ DDR4 / ssd 128ГБ Flash/ 14" 1366х768 пикселей
+- Ноутбук Acer Gadget E10 (AMD Ryzen 5-3500/ DDR4 8GB/ SSD 256GB/ 15.6 FHD IPS/ AMD Radeon Graphics/ Backlit/ Win11/ RU) Grey (ZL.OTH11.03U)
+- Ноутбук Acer Aspire Go 15 (Intel Core i3-N355/ DDR5 8GB/ UFS 128GB/ 15.6" FHD/ Intel UHD Graphics/ Win11/ RU) Steel Gray (NX.JJLAA.001)
+- Ноутбук Acer Aspire Lite AL15-52P (Intel Celeron N4500/ DDR4 8GB/ SSD 512GB/ 15.6 FHD IPS/ Intel UHD Graphics/ NoOS/ RU) Silver (NX.JB8ER.001) (официальный)
+- Ноутбук Acer Aspire Lite AL16-54P (Intel Core i3-1305U/ DDR5 8GB/ SSD 256GB/ 16" WUXGA IPS/ Intel UHD Graphics/ NoOS/ RU) Silver (NX.JN0EM.001)
+- Ноутбук Acer Aspire Go 15 (AMD Ryzen 5-7520U/ DDR5 8GB/ SDD 512GB/ 15.6" FHD IPS Touch/ AMD Radeon Graphics/ Win11/ RU) Silver (NX.JJJAA.004)
+- Ноутбук Acer Nitro 5 AN515-58-56W4 Core i5 12500H DDR4 8Gb SSD512Gb NVIDIA GeForce RTX 3050 4Gb 15.6" IPS FHD (1920x1080) Eshell black WiFi BT Cam (NH. QFJER.002)
+- Ноутбук Acer Nitro 5 AN515-58-56W4 Core i5 12500H DDR4 16Gb SSD512Gb NVIDIA GeForce RTX 3050 4Gb 15.6" IPS FHD (1920x1080) Eshell black WiFi BT Cam (NH. QFJER.002)
+- Ноутбук Lenovo IdeaPad 1 15IJL7 (Intel Celeron N4500/ DDR4 8GB/ SSD 256GB/ 15.6 FHD LCD/ Intel UHD Graphics/ No DVD/ DOS/ RU) Cloud Grey (82LX00D7PS)
+- Ноутбук Laptop Lenovo Yoga 7 2 en 1 Intel Core Ultra 7 155U 16 GB DDR5 RAM 1TB SSD 16" WUXGA
+- Ноутбук ASUS Vivobook Go 15 (Intel Core i3-N305/ DDR4 8GB/ SSD 256GB/ 15,6" FHD/ Intel UHD Graphics/ Win11/ RU) Silver (90NB0ZT1-M02580 / E1504GA-WS35)
+- Ноутбук ASUS Vivobook Go 15 (AMD Ryzen 3-30/ DDR5 8GB/ SSD 512GB/ 15.6" FHD IPS/ AMD Radeon 610M/ NoOS/ RU) Black (90NB0ZR2-M056N0 / E1504FA-BQ3391)
+- Ноутбук ASUS Zenbook Q415MA Intel Core Ultra 5-125H| DDR5 8GB| SSD 512GB| 14″ WUXGA OLED Touch| Intel UHD Graphics| Win11| RU| Grey
+- Ноутбук ASUS TUF Gaming A18 (AMD Ryzen 7-260/ DDR5 16GB/ SSD 512GB/ 18,0" FHD 144Hz/ 8GB GF RTX5060/ Backlit/ NoOS/RU) Jaeger Gray (90NR0NN1-M001M0 / FA808UM-S8030)
+- Ноутбук Dell Vostro 3520 (Intel Core i5-1235U/ DDR4 8GB/ SSD 512GB/ 15.6 Full HD LCD/ Intel UHD Graphics/ NoOS/ RU) Black
+- Ноутбук Dell Inspiron 15 3530 (Intel Core i5-1334U/ DDR4 8GB/ SSD 512GB/ 15.6” FHD LCD 120hz/ Intel UHD Graphics/ Backlit/ NoOS/ RU) Black (официальный)
+- Ноутбук Chuwi GemiBook Plus CWI629 (Intel Pentium Silver N5030/ DDR4 8GB/ SSD 256GB/ 15.6" FHD/ Intel UHD Graphics/ Win11/ RU) Silver
+- Ноутбук Apple Macbook Neo 13 (A18 Pro/ 6 CPU/ 5 GPU/ LPDDR 8GB/ SSD 256GB/ 13 IPS 2408×1506/ RU) (Z1TU00020/MHFH4)
+- Моноблок Lenovo V50a-24IMB AIO (Intel Core i5-10400T/ DDR4 8GB/ SSD 256GB/ 23,8 IPS FHD LCD/ Integrated Intel UHD Graphics/ Keyboard+mouse/ NoOS/ RU) Raven Black (11FJ00AJRU)
+- Моноблок Lenovo IdeaCentre 3 24ITL6 / 23.8" FHD / Intel Core i5-1135G7 / 8GB DDR / 1T HDD Black - F0G0008XAX
+- Моноблок HP 24-cb1004l (2K4) (Intel Core i5-1235U/ DDR4 8GB/ SSD 512GB/ 23,8 FHD/ Intel Iris Xe Graphics/ No DVD/ key + mouse/ NoOS/ RU) White (9S2K4PA)
+- Моноблок HP 24-cr0011l (8L2) (Intel Core i5-1335U/ DDR4 8GB/ SSD 512GB/ 23,8 FHD/ Intel Iris Xe Graphics/ No DVD/ key + mouse/ NoOS/ RU) White (AV8L2PA)
+- Моноблок HP 24-cr0264l (RS0) (AMD Ryzen 5-7520U/ DDR5 8GB/ SSD 512GB/ 23,8 FHD/ AMD Radeon Graphics/ No DVD/ key + mouse/ NoOS/ RU) White (A4RS0EA)
+- Моноблок HP 27-cr0008l (JC2) (Intel Core i5-1335U/ DDR4 16Gb/ SSD 512Gb/ 27" FHD IPS/ Intel Iris Xe Graphics/ key+mouse/ NoOS/ RU) White (B7JC2PA)
+- Моноблок NONEM 24" IPS H61 ( Вебкамера WiFi) black
+- Моноблок Xtech 24" IPS H610 Flat Model: S238 Flat ( Вебкамера WiFi M.2 nvme) white
+- Моноблок Баребон AVTECH F2 (Touch screen) WITH MOTHERBOARD H310D4
+- Сумка Uz computers  15,6
+- Сумка WiWU Vivi Laptop Handbag с ручками 15.6
+- Сумка Wiwu Hali Laptop Sleeve 14 дюйм
+- Сумка Wiwu Hali Laptop Sleeve 16 дюйм
+- Сумка Wiwu Alpha Double Layer 14 черная | Xline Parts
+- Сумка wiwu minimalist BAG 15,6
+- Сумка wiwu Alpha Slim Sleeve
+- Сумка WIWU Pioneer HandBag
+- Сумка WIWU Skin Armor Sleeve
+- Сумка WIWU 14 Hali Vertical Layer Bag
+- Сумка WIWU Ora Tote 16
+- Сумка WIWU Cozy Classic Case 16 inch
+- Сумка back pack 166 рюкзак для ноутбука 15,6 blek
+- Сумка Рюкзак Wiwu Pilot 15,6”
+- Сумка Рюкзак Wiwu Minimalist Минималистичный водонепроницаемый рюкзак Wiwu
+- Сумка Noutbook chexol 15.6
 - Mikuso Cooling Pad PEIPAH-6 (NCP-066)
 - Mikuso Tornado-2 NCP-236
 - MIKUSO NCP-784 oхлаждающая подставка для ноутбука с 4 вентиляторами
@@ -405,45 +403,45 @@
 - Gaming Chair Cougar Speeder One
 
 === CASE ===
-- MSI MPG Gungnir 300R Airflow Black ATX PC Gaming Case
-- Gaming RGB Case BARDO
-- Gaming RGB Case BARDO BD-8017.
-- Deepcool Matrexx 70 ADD-RGB 3F
-- DeepCool CK560 blek
-- MSI MPG GUNGNIR 111R
-- MSI MPG GUNGNIR 110R
-- Cougar Airface RGB Black
-- Case Huntkey S980 Tornado White + 4 x RGB Cooler
-- Case Huntkey S980 Tornado BLACK + 4 x RGB Cooler
-- Gaming RGB Case BARDO BD-8020.
-- AULA Gaming PC Case FZ007
-- AULA FZ008 + 3 RGB кулера в комплекте
-- Sharkoon intros the TG7M RGB ATX case
-- Sharkoon TG4M RGB Black
-- Sharkoon TG5 PRO RGB
-- Компьютерный корпус AVT Gaming E1 Glass
-- Gaming RGB Case BARDO BD-1907.
-- BD-8010.
+- CASE kes MSI MPG Gungnir 300R Airflow Black ATX PC Gaming Case
+- CASE kes Gaming RGB Case BARDO
+- CASE kes Gaming RGB Case BARDO BD-8017.
+- CASE kes Deepcool Matrexx 70 ADD-RGB 3F
+- CASE kes DeepCool CK560 blek
+- CASE kes MSI MPG GUNGNIR 111R
+- CASE kes MSI MPG GUNGNIR 110R
+- CASE kes Cougar Airface RGB Black
+- CASE kes  Huntkey S980 Tornado White + 4 x RGB Cooler
+- CASE kes Huntkey S980 Tornado BLACK + 4 x RGB Cooler
+- CASE kes Gaming RGB Case BARDO BD-8020.
+- CASE kes AULA Gaming PC Case FZ007
+- CASE kes AULA FZ008 + 3 RGB кулера в комплекте
+- CASE kes Sharkoon intros the TG7M RGB ATX case
+- CASE kes Sharkoon TG4M RGB Black
+- CASE kes Sharkoon TG5 PRO RGB
+- CASE kes Компьютерный корпус AVT Gaming E1 Glass
+- CASE kes Gaming RGB Case BARDO BD-1907.
+- CASE kes BD-8010.
 
 === TELEFON AKSESUAR ===
-- Honor X5b 4/64GB
-- Honor X5b Plus 4/64
-- Honor X5b plus 4.128
-- Honor X6b 4.128
-- Honor X6b 6.256
-- Honor X7c 6.128
-- Honor X7c 8.256
-- Honor X8c 8.128
-- Honor X8b 8.128
-- Honor X8b 8.256
-- Honor X9c 8.256
-- Oteeto Tab 10 Chemistry 8/256GB
-- Oteeto Tab 10 Kids 6/128GB
-- samsung a9 4/64
-- Redmi Pad 2 4G/4 ГБ ОЗУ | 128 ГБ
-- Redmi Pad 2 4/128GB
-- Xiaomi Redmi Pad SE 8.7" 4G / 4+64 ГБ
-- Samsung Galaxy Tab A9+ 5G (X216) / 4 ГБ ОЗУ | 64 ГБ
+- TELEFON Honor X5b 4/64GB
+- TELEFON Honor X5b Plus 4/64
+- TELEFON Honor X5b plus 4.128
+- TELEFON Honor X6b 4.128
+- TELEFON Honor X6b 6.256
+- TELEFON Honor X7c 6.128
+- TELEFON Honor X7c 8.256
+- TELEFON Honor X8c 8.128
+- TELEFON Honor X8b 8.128
+- TELEFON Honor X8b 8.256
+- TELEFON Honor X9c 8.256
+- Планшеты planshet Oteeto Tab 10 Chemistry 8/256GB
+- Планшеты planshet Oteeto Tab 10 Kids 6/128GB
+- Планшеты planshet samsung a9 4/64
+- Планшеты planshet Redmi Pad 2 4G/4 ГБ ОЗУ | 128 ГБ
+- Планшеты planshet Redmi Pad 2 4/128GB
+- Планшеты planshet Xiaomi Redmi Pad SE 8.7" 4G / 4+64 ГБ
+- Планшеты planshet Samsung Galaxy Tab A9+ 5G (X216) / 4 ГБ ОЗУ | 64 ГБ
 - avto kalla WKN-6801 Ture-C 5v3A
 - Кабель Samsung Type-C to Type-C Fast Charging Cable 3A
 - Xiaomi HyperCharge Type C - Type C Cable
@@ -452,3 +450,9 @@
 - Зарядное устройство Xiaomi GaN 120W с кабелем Type-C to Type-C Premium
 - Зарядное устройство Xiaomi 67W Fast Charger MDY-12-ES.
 - Зарядное устройство Xiaomi Mi 55W GaN (MDY-12-EQ)
+- blok pitanya Блок питание HuntKey   CP6000   600W
+- blok pitanya Блок питание  FPMAX Formula FX-600 600W
+- blok pitanya Блок питание  Huntkey MVP K1000X 1000W / 80+ Gold
+- blok pitanya  Блок питание Gigabyte GP-P750BS 750W, 120mm, 80 Plus Bronze, ATX Power Supply 
+- blok pitanya Блок питание   Gigabyte GP-P850GM 850W, 120mm, 80 Plus Gold,  Modular ATX Power Supply 
+- blok pitanya Блок питание  MSI MPG A750GF, 80 PLUS Gold, 750W Power Supply
