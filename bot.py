@@ -47,7 +47,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     welcome_text = (
         f"Assalomu alaykum, {user_first_name} aka!\n\n"
         f"Men **Uz Tech** do'konining yordamchisi — **Saidazimxon**man. 🤖💻\n\n"
-        f"Sizga noutbuklar, printerlar, routerlar yoki ehtiyot qismlar bo'yicha qanday yordam bera olaman?"
+        f"Sizga noutbuklar, monobloklar, printerlar, ehtiyot qismlar yoki aksessuarlar bo'yicha qanday yordam bera olaman?"
     )
     await update.message.reply_text(welcome_text, parse_mode="Markdown", disable_web_page_preview=True)
 
@@ -59,38 +59,48 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     # 1. Salomlashish
     if any(word in text_lower for word in ["salom", "assalom", "qalaysiz", "yaxshimisiz"]):
-        reply_text = "Va alaykum assalom! Uz Tech do'koniga xush kelibsiz. Ishlarimiz yaxshi, o'zingiz tuzumisiz? Qanday texnika qidirayotgan edingiz?"
+        reply_text = "Va alaykum assalom! Uz Tech do'koniga xush kelibsiz. Ishlarimiz yaxshi, o'zingiz tuzumisiz? Qanday texnika yoki ehtiyot qism qidirayotgan edingiz?"
 
-    # 2. Manzil, ish vaqti yoki vaqtga oid so'rovlar
+    # 2. Manzil, ish vaqti yoki kontaktlar
     elif any(word in text_lower for word in ["manzil", "adres", "lokatsiya", "qayerda", "kontakt", "telefon", "ish vaqti", "nechigacha", "vaqt", "ishlaysiz", "shanba", "yakshanba", "kun", "ishda"]):
         reply_text = CONTACT_INFO
 
-    # 3. Printerlar (L3350, MF3010 va h.k.)
-    elif any(word in text_lower for word in ["printer", "l3350", "mf3010", "kserokopiya", "skaner"]):
+    # 3. Printerlar, katrij va bo'yoqlar
+    elif any(word in text_lower for word in ["printer", "l3350", "l18050", "mf3010", "kserokopiya", "skaner", "kraska", "katrij", "kartrij"]):
         reply_text = (
-            "Ha, albatta! Do'konimizda ofis va uy uchun har xil turdagi printerlar (shu jumladan L3350, MF3010 modellari va boshqalar) mavjud.\n\n"
-            "Aniq narxlari, qolgan-ketganini bilish va buyurtma berish uchun menejerimiz bilan bog'lanishingiz mumkin:\n"
+            "Ha, albatta! Do'konimizda ofis va uy uchun har xil turdagi printerlar (shu jumladan L3350, L18050, MF3010 modellari), katrijlar va bo'yoqlar mavjud.\n\n"
+            "Aniq narxlari va buyurtma berish uchun menejerimiz bilan bog'lanishingiz mumkin:\n"
             "• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)"
         )
 
-    # 4. Noutbuk va kompyuterlar
-    elif any(word in text_lower for word in ["noutbuk", "kompyuter", "notebook", "laptop", "pc", "noutbukchi"]):
+    # 4. Noutbuk, kompyuter, monoblok va ichki qismlar (protsessor, operativka, ssd va h.k.)
+    elif any(word in text_lower for word in ["noutbuk", "kompyuter", "notebook", "laptop", "pc", "noutbukchi", "monoblok", "protsessor", "prosesor", "operativka", "ram", "ssd", "hdd", "videokarta", "keys"]):
         reply_text = (
-            "Ha, do'konimizda o'qish, ofis ishlari va o'yinlar uchun noutbuklar hamda kompyuterlar yetarli miqdorda bor!\n\n"
-            "Sizga kerak bo'lgan xarakteristikalarni tanlash va narxlarini kelishish uchun menejerlarimizga yozishingiz mumkin:\n"
+            "Ha, do'konimizda o'qish, ofis va o'yinlar uchun noutbuklar, kompyuterlar, monobloklar hamda barcha turdagi butlovchi qismlar (protsessor, operativka, SSD va boshqalar) yetarli miqdorda bor!\n\n"
+            "Sizga kerak bo'lgan texnika va uning narxlarini kelishish uchun menejerlarimizga yozishingiz mumkin:\n"
             "• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
             "• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
         )
 
-    # 5. Wi-Fi router va tarmoq jihozlari
-    elif any(word in text_lower for word in ["wifi", "wi-fi", "router", "rotir", "rotor", "internet"]):
+    # 5. Tarmoq jihozlari (Wi-Fi router, kommutator, switch)
+    elif any(word in text_lower for word in ["wifi", "wi-fi", "router", "rotir", "rotor", "internet", "kommutator", "switch", "svich"]):
         reply_text = (
-            "Ha, uy va ofis uchun Wi-Fi routerlar hamda tarmoq qurilmalari do'konimizda bor!\n\n"
+            "Ha, do'konimizda uy va ofis uchun Wi-Fi routerlar, kommutatorlar (switch) hamda tarmoq qurilmalari mavjud!\n\n"
             "Ularning turlari va narxlarini bilish uchun menejerlarimizga murojaat qilishingiz mumkin:\n"
-            "• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)"
+            "• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
+            "• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
         )
 
-    # 6. Boshqa har qanday savollar uchun
+    # 6. Periferiya va aksessuarlar (mishka, klaviatura, kovrik, sumka, adapter, monitor)
+    elif any(word in text_lower for word in ["mishka", "mishqa", "klaviatura", "klavyatura", "kovrik", "sumka", "adapter", "zaryadnik", "monitor"]):
+        reply_text = (
+            "Ha, do'konimizda monitorlar, mishka, klaviatura, kovriklar, noutbuk sumkalari va adapterlar kabi barcha turdagi aksessuarlar bor!\n\n"
+            "Tanlash va narxlarni bilish uchun menejerlarimiz bilan bog'lanishingiz mumkin:\n"
+            "• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
+            "• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
+        )
+
+    # 7. Boshqa barcha holatlar uchun
     else:
         reply_text = (
             "Tushundim! Bu mahsulot yoki xizmat bo'yicha aniq ma'lumot va narxlarni quyidagi menejerlarimizdan olishingiz mumkin:\n\n"
