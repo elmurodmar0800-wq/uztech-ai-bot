@@ -49,8 +49,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
     
     try:
+        # Model nomi gemini-3.8-flash ga yangilandi
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
+            model="gemini-3.8-flash",
             contents=f"{SYSTEM_INSTRUCTION}\n\nMijoz: {user_text}\nSherzod:"
         )
         reply_text = response.text
