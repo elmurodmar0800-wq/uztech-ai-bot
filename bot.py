@@ -20,7 +20,7 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 # Gemini mijozini yaratish
 client = genai.Client(api_key=GEMINI_API_KEY)
 
-# Render port xatosini oldini olish uchun soxta Web Server
+# Render port xatosini oldini olish uchun soxta Web Server (Bepul ishlashi uchun)
 class HealthCheckHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -32,18 +32,19 @@ def run_dummy_server():
     server = HTTPServer(('0.0.0.0', port), HealthCheckHandler)
     server.serve_forever()
 
-# Sherzod botining shaxsiyati va yo'riqnomasi
+# Saidazimxon AI yo'riqnomasi (Do'kon va bilimlar bazasi)
 SYSTEM_INSTRUCTION = """
 Siz "Uz Tech" kompyuter do'konining xushmuomala, aqlli va tajribali sun'iy intellekt qabulxonachisisiz. Ismingiz — Saidazimxon.
 Do'koningiz Farg'ona shahrida joylashgan.
 
-Sizning vazifalaringiz:
-1. Mijozlar bilan juda xushmuomala va professional tarzda o'zbek tilida muloqot qilish.
-2. Do'konda kompyuterlar, printerlar, noutbuklar, monobloklar, kompyuter ehtiyot qismlari, klaviatura, mishka hamda servis/ta'mirlash xizmatlari borligini aytish.
-3. Mijozlarga mos kompyuter va noutbuklarni tanlashda yordam berish.
-4. Muhim yoki aniq narxlar/buyurtmalar bo'yicha menejerlarimiz @wero_7708 yoki @A9769 bilan bog'lanishni tavsiya qilish.
+Sizning bilimlar bazangiz va javob berish qoidalaringiz:
+1. Do'konda kompyuterlar, noutbuklar, monobloklar, printerlar, ehtiyot qismlar (videokarta, operativka, SSD va h.k.), klaviatura, mishkalar hamda kompyuter ta'mirlash/servis xizmatlari mavjud.
+2. Agar mijoz do me'yorda salom bersa, do'stona va xushmuomala salomlashing.
+3. Agar mijoz adres/manzil so'rasa: Do'konimiz Farg'ona shahrida joylashgan deb javob bering.
+4. Agar mijoz noutbuk, kompyuter yoki printer so me'yorda so'rasa, do'konda borligini aytib, xaridor ehtiyojini so'rang.
+5. Aniq narxlar, zakaz berish yoki chuqur texnik savollar bo'yicha menejerlarimiz @wero_7708 yoki @A9769 bilan bog'lanishni maslahat bering.
 
-Har doim qisqa, tushunarli va do'stona javob bering.
+Har doim qisqa, tushunarli, aniq va o'zbek tilida do'stona javob bering.
 """
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -63,17 +64,18 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
     
     try:
-        # Promptni to'g'ridan-to'g'ri bitta matn ko'rinishida uzatamiz (eng ishonchli usul)
-        prompt = f"{SYSTEM_INSTRUCTION}\n\nMijoz savoli: {user_text}\nSaidazimxon:"
+        # Prompt va yo'riqnomani birlashtirib yuboramiz
+        full_prompt = f"{SYSTEM_INSTRUCTION}\n\nMijoz: {user_text}\nSaidazimxon:"
         
+        # Eng barqaror gemini-1.5-flash modelidan foydalanamiz
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=prompt
+            model="gemini-1.5-flash",
+            contents=full_prompt
         )
         reply_text = response.text
     except Exception as e:
         logging.error(f"Gemini API xatosi: {e}")
-        reply_text = "Ha, albatta! Noutbuklarimiz va barcha turdagi kompyuter jihozlari do'konimizda mavjud. Aniq narxlar va buyurtma uchun menejerlarimiz @wero_7708 yoki @A9769 bilan bog'lanishingiz mumkin."
+        reply_text = "Uzr, tizimda vaqtincha texnik uzilish bo'ldi. Aniq ma'lumot olish uchun menejerlarimiz @wero_7708 yoki @A9769 bilan bog'lanishingiz mumkin."
 
     await update.message.reply_text(reply_text)
 
