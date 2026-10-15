@@ -19,7 +19,7 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
 # Kanalingiz havolasi va nomi
 CHANNEL_LINK = "https://t.me/uztech_computers"
-CHANNEL_NAME = "@uztech\_computers"  # Markdown buzilmasligi uchun pastki chiziq ekranlandi
+CHANNEL_NAME = "@uztech\_computers"
 
 # Gemini mijozini yaratish
 client = genai.Client(api_key=GEMINI_API_KEY)
@@ -55,9 +55,9 @@ Siz "Uz Tech" kompyuter do'konining xushmuomala, bilimdon va samimiy sun'iy inte
 Do'konimiz Farg'ona shahrida joylashgan.
 
 Qoidalar:
-1. Mijozlar bilan o'zbek tilida, xuddi inson kabi samimiy, iliq va ravon muloqot qiling.
-2. {CHANNEL_LINK} kanalimizdagi barcha noutbuklar, kompyuterlar, printerlar va ehtiyot qismlarni yaxshi bilasiz. Mijozga mos mahsulotlarni tavsiya qiling.
-3. Aniq narxlar va buyurtma uchun doimo menejerlarimizga yo'naltiring. Bunda ismlarini albatta quyidagi Markdown formatida yozing:
+1. Mijozlar bilan o'zbek tilida, xuddi tirik inson kabi erkin, samimiy va iliq muloqot qiling. Quruq bir xil qolipli javoblar yozmang, har bir savolga mazmunli javob bering.
+2. {CHANNEL_LINK} kanalimizdagi barcha noutbuklar, kompyuterlar, printerlar, videokartalar va ehtiyot qismlarni yaxshi bilasiz deb hisoblang. Mijoz nimani so'rasa, uning xarakteristikasini tushuntiring va maslahat bering.
+3. Agar mijoz aniq narx, chegirma yoki buyurtma haqida so'rasa, uni darhol menejerlarimizga yo'naltiring. Ismlarini quyidagi formatda yozing:
    - [Elmurod](https://t.me/wero_7708)
    - [Axrorbek](https://t.me/A9769)
 """
@@ -73,7 +73,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(welcome_text, parse_mode="Markdown", disable_web_page_preview=True)
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Mijoz xabarlariga javob berish"""
+    """Mijoz xabarlariga Gemini orqali erkin javob berish"""
     user_text = update.message.text
     text_lower = user_text.lower()
     
@@ -87,19 +87,20 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         prompt = f"{SYSTEM_INSTRUCTION}\n\nMijozning xabari: {user_text}\nSaidazimxon javobi:"
         
+        # Barqaror gemini-2.0-flash modelidan foydalanamiz
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
+            model="gemini-2.0-flash",
             contents=prompt
         )
         reply_text = response.text
     except Exception as e:
         logging.error(f"Gemini API xatosi: {e}")
+        # Agar API vaqtincha ishlamay qolsa chiqadigan tabiiy zaxira javob
         if "salom" in text_lower or "assalom" in text_lower:
             reply_text = "Va alaykum assalom! Uz Tech do'koniga xush kelibsiz. Qanday texnika qidirayotgan edingiz, bemalol ayting."
         else:
             reply_text = (
-                f"Ha, albatta! Ayni paytda {CHANNEL_NAME} kanalimizda ko'plab noutbuklar va kompyuter jihozlari mavjud.\n\n"
-                f"Aniq narxlar va buyurtma berish uchun menejerlarimiz bilan bog'lanishingiz mumkin:\n"
+                f"Tushundim! Bu bo'yicha batafsil ma'lumot va aniq narxlarni bilish uchun menejerlarimiz bilan bog'lanishingiz mumkin:\n\n"
                 f"• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
                 f"• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
             )
