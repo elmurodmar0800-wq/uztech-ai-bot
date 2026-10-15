@@ -47,7 +47,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     welcome_text = (
         f"Assalomu alaykum, {user_first_name} aka!\n\n"
         f"Men **Uz Tech** do'konining yordamchisi — **Saidazimxon**man. 🤖💻\n\n"
-        f"Sizga noutbuklar, monobloklar, printerlar, ehtiyot qismlar yoki aksessuarlar bo'yicha qanday yordam bera olaman?"
+        f"Sizga noutbuklar, videokartalar, printerlar yoki boshqa ehtiyot qismlar bo'yicha qanday yordam bera olaman?"
     )
     await update.message.reply_text(welcome_text, parse_mode="Markdown", disable_web_page_preview=True)
 
@@ -57,15 +57,19 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
     
-    # 1. Salomlashish
-    if any(word in text_lower for word in ["salom", "assalom", "qalaysiz", "yaxshimisiz"]):
+    # 1. Kimligini so'raganda
+    if any(word in text_lower for word in ["kimsiz", "sen kimsiz", "isming", "oting"]):
+        reply_text = "Men — 'Uz Tech' do'konining sun'iy intellekt yordamchisi Saidazimxonman! 🤖💻 Do'konimizdagi barcha texnikalar va mahsulotlar bo'yicha sizga ma'lumot berishga tayyorman."
+
+    # 2. Salomlashish
+    elif any(word in text_lower for word in ["salom", "assalom", "qalaysiz", "yaxshimisiz"]):
         reply_text = "Va alaykum assalom! Uz Tech do'koniga xush kelibsiz. Ishlarimiz yaxshi, o'zingiz tuzumisiz? Qanday texnika yoki ehtiyot qism qidirayotgan edingiz?"
 
-    # 2. Manzil, ish vaqti yoki kontaktlar
+    # 3. Manzil, ish vaqti yoki kontaktlar
     elif any(word in text_lower for word in ["manzil", "adres", "lokatsiya", "qayerda", "kontakt", "telefon", "ish vaqti", "nechigacha", "vaqt", "ishlaysiz", "shanba", "yakshanba", "kun", "ishda"]):
         reply_text = CONTACT_INFO
 
-    # 3. Printerlar, katrij va bo'yoqlar
+    # 4. Printerlar, katrij va bo'yoqlar
     elif any(word in text_lower for word in ["printer", "l3350", "l18050", "mf3010", "kserokopiya", "skaner", "kraska", "katrij", "kartrij"]):
         reply_text = (
             "Ha, albatta! Do'konimizda ofis va uy uchun har xil turdagi printerlar (shu jumladan L3350, L18050, MF3010 modellari), katrijlar va bo'yoqlar mavjud.\n\n"
@@ -73,16 +77,25 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)"
         )
 
-    # 4. Noutbuk, kompyuter, monoblok va ichki qismlar (protsessor, operativka, ssd va h.k.)
-    elif any(word in text_lower for word in ["noutbuk", "kompyuter", "notebook", "laptop", "pc", "noutbukchi", "monoblok", "protsessor", "prosesor", "operativka", "ram", "ssd", "hdd", "videokarta", "keys"]):
+    # 5. Videokartalar (vidio karta, 3050, rx, rtx va h.k.)
+    elif any(word in text_lower for word in ["videokarta", "vidio karta", "video karta", "3050", "4060", "rx", "rtx", "gtx"]):
         reply_text = (
-            "Ha, do'konimizda o'qish, ofis va o'yinlar uchun noutbuklar, kompyuterlar, monobloklar hamda barcha turdagi butlovchi qismlar (protsessor, operativka, SSD va boshqalar) yetarli miqdorda bor!\n\n"
+            "Ha, do'konimizda o'yinlar va professional ishlar uchun har xil turdagi videokartalar (jumladan RTX 3050 va boshqa modellar) mavjud!\n\n"
+            "Ularning narxlari va mavjudligini aniqlash uchun menejerlarimizga yozishingiz mumkin:\n"
+            "• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
+            "• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
+        )
+
+    # 6. Noutbuk, kompyuter, monoblok va ichki qismlar
+    elif any(word in text_lower for word in ["noutbuk", "kompyuter", "notebook", "laptop", "pc", "noutbukchi", "monoblok", "protsessor", "prosesor", "operativka", "ram", "ssd", "hdd", "keys"]):
+        reply_text = (
+            "Ha, do'konimizda o'qish, ofis va o'yinlar uchun noutbuklar, kompyuterlar, monobloklar hamda barcha turdagi butlovchi qismlar yetarli miqdorda bor!\n\n"
             "Sizga kerak bo'lgan texnika va uning narxlarini kelishish uchun menejerlarimizga yozishingiz mumkin:\n"
             "• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
             "• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
         )
 
-    # 5. Tarmoq jihozlari (Wi-Fi router, kommutator, switch)
+    # 7. Tarmoq jihozlari (Wi-Fi router, kommutator, switch)
     elif any(word in text_lower for word in ["wifi", "wi-fi", "router", "rotir", "rotor", "internet", "kommutator", "switch", "svich"]):
         reply_text = (
             "Ha, do'konimizda uy va ofis uchun Wi-Fi routerlar, kommutatorlar (switch) hamda tarmoq qurilmalari mavjud!\n\n"
@@ -91,7 +104,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
         )
 
-    # 6. Periferiya va aksessuarlar (mishka, klaviatura, kovrik, sumka, adapter, monitor)
+    # 8. Periferiya va aksessuarlar
     elif any(word in text_lower for word in ["mishka", "mishqa", "klaviatura", "klavyatura", "kovrik", "sumka", "adapter", "zaryadnik", "monitor"]):
         reply_text = (
             "Ha, do'konimizda monitorlar, mishka, klaviatura, kovriklar, noutbuk sumkalari va adapterlar kabi barcha turdagi aksessuarlar bor!\n\n"
@@ -100,7 +113,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
         )
 
-    # 7. Boshqa barcha holatlar uchun
+    # 9. Boshqa barcha holatlar uchun
     else:
         reply_text = (
             "Tushundim! Bu mahsulot yoki xizmat bo'yicha aniq ma'lumot va narxlarni quyidagi menejerlarimizdan olishingiz mumkin:\n\n"
