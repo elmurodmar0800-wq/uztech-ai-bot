@@ -5,7 +5,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from threading import Thread
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
-from google import genai
+import google.generativeai as genai
 
 # Logging sozlamalari
 logging.basicConfig(
@@ -17,8 +17,9 @@ logging.basicConfig(
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
-# Gemini mijozini yaratish
-client = genai.Client(api_key=GEMINI_API_KEY)
+# Gemini API ni sozlash
+genai.configure(api_key=GEMINI_API_KEY)
+ai_model = genai.GenerativeModel('gemini-1.5-flash')
 
 # Render port xatosini oldini olish uchun soxta Web Server
 class HealthCheckHandler(BaseHTTPRequestHandler):
@@ -32,7 +33,7 @@ def run_dummy_server():
     server = HTTPServer(('0.0.0.0', port), HealthCheckHandler)
     server.serve_forever()
 
-# Do'kon ma'lumotlari va ish vaqti
+# Do'kon ma'lumotlari
 CONTACT_INFO = """
 📍 **Do'konimiz manzili:** Farg'ona shahri ([Google Maps lokatsiyasi](https://goo.gl/maps/NeV8ogH4ARYnovWi6))
 
@@ -47,11 +48,11 @@ CONTACT_INFO = """
 • 📸 [Instagram sahifamiz](https://www.instagram.com/uzteck/)
 """
 
-SYSTEM_INSTRUCTION = """
+SYSTEM_PROMPT = """
 Sen Farg'ona shahridagi "Uz Tech" kompyuter do'konining sun'iy intellekt yordamchisisisan. Isming — Saidazimxon.
-Mijozlar bilan o'zbek tilida juda xushmuomala, ochiqko'ngil va erkin muloqot qil. Quruq bir xil qolipdagi takroriy gaplarni yozma.
-Do'konimizda noutbuklar, kompyuterlar, printerlar, videokartalar va barcha turdagi ehtiyot qismlar mavjud.
-Ish vaqtimiz: Dushanbadan shanbagacha, soat 09:00 dan 19:00 gacha. Yakshanba dam olish kuni.
+Mijozlar bilan o'zbek tilida juda xushmuomala, ochiqko'ngil va erkin muloqot qil. Quruq bir xil qolipdagi takroriy gaplarni zinhor yozma.
+Do'konimizda noutbuklar, kompyuterlar, printerlar (masalan MF3010 va boshqalar), Wi-Fi routerlar va barcha turdagi ehtiyot qismlar mavjud.
+Ish vaqtimiz: Dushanbadan shanbagacha, soat 09:00 dan 19:00 gacha.
 Agar mijoz aniq narx, chegirma, zakaz yoki texnikalarning batafsil narxini so'rasa, quyidagi menejerlarimizga yo'naltir:
 - [Elmurod](https://t.me/wero_7708)
 - [Axrorbek](https://t.me/A9769)
@@ -62,7 +63,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     welcome_text = (
         f"Assalomu alaykum, {user_first_name} aka!\n\n"
         f"Men **Uz Tech** do'konining sun'iy intellekt yordamchisi — **Saidazimxon**man. 🤖💻\n\n"
-        f"Sizga qanday texnika yoki ehtiyot qismlar bo'yicha yordam kerak? Bemalol so'rashingiz mumkin!"
+        f"Sizga qanday texnika, printer yoki ehtiyot qismlar bo'yicha yordam kerak? Bemalol so'rashingiz mumkin!"
     )
     await update.message.reply_text(welcome_text, parse_mode="Markdown", disable_web_page_preview=True)
 
@@ -72,18 +73,15 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
     
-    # Manzil, ish vaqti yoki kontakt so'ralganda tayyor matnni chiqaradi
+    # Manzil yoki ish vaqti so'ralganda tayyor ma'lumotni chiqaradi
     if any(word in text_lower for word in ["manzil", "adres", "lokatsiya", "qayerda", "kontakt", "telefon", "ish vaqti", "nechigacha", "vaqt", "ishlaysiz", "shanba", "yakshanba"]):
         await update.message.reply_text(CONTACT_INFO, parse_mode="Markdown", disable_web_page_preview=True)
         return
 
     try:
-        prompt = f"{SYSTEM_INSTRUCTION}\n\nMijoz savoli: {user_text}\nSaidazimxon javobi:"
-        
-        response = client.models.generate_content(
-            model="gemini-2.0-flash",
-            contents=prompt
-        )
+        # To'g'ridan-to'g'ri AI modelidan javob olish
+        prompt = f"{SYSTEM_PROMPT}\n\nMijoz savoli: {user_text}\nSaidazimxon javobi:"
+        response = ai_model.generate_content(prompt)
         reply_text = response.text
         
         if not reply_text:
@@ -93,13 +91,10 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         logging.error(f"Gemini API xatosi: {e}")
         if "salom" in text_lower:
             reply_text = "Va alaykum assalom! Uz Tech do'koniga xush kelibsiz. Qanday texnika qidirayotgan edingiz?"
+        elif "printer" in text_lower or "mf3010" in text_lower:
+            reply_text = f"Ha, printerlarimiz va kserokopiya apparatlari (shu jumladan MF3010 modellari ham) bor! Aniq narxlari va qolgan-ketganini bilish uchun menejerimiz [Elmurod](https://t.me/wero_7708) bilan bog'lanishingiz mumkin."
         else:
-            reply_text = (
-                f"Ayni paytda [Telegram kanalimizda](https://t.me/uztech_computers) ko'plab noutbuklar va jihozlar mavjud.\n\n"
-                f"Batafsil ma'lumot va narxlar uchun menejerlarimizga yozishingiz mumkin:\n"
-                f"• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
-                f"• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
-            )
+            reply_text = f"Tushundim! Bu bo'yicha batafsil ma'lumot olish uchun menejerlarimizga yozishingiz mumkin:\n• [Elmurod](https://t.me/wero_7708)\n• [Axrorbek](https://t.me/A9769)"
 
     await update.message.reply_text(reply_text, parse_mode="Markdown", disable_web_page_preview=True)
 
