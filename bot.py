@@ -17,9 +17,8 @@ logging.basicConfig(
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
-# Kanalingiz havolasi va nomi
+# Kanalingiz havolasi
 CHANNEL_LINK = "https://t.me/uztech_computers"
-CHANNEL_NAME = "@uztech\_computers"
 
 # Gemini mijozini yaratish
 client = genai.Client(api_key=GEMINI_API_KEY)
@@ -49,15 +48,16 @@ CONTACT_INFO = f"""
 • 📸 [Instagram sahifamiz](https://www.instagram.com/uzteck/)
 """
 
-# Saidazimxon botining yo'riqnomasi
+# Saidazimxon botining erkin va aqlli yo'riqnomasi
 SYSTEM_INSTRUCTION = f"""
-Siz "Uz Tech" kompyuter do'konining xushmuomala, bilimdon va samimiy sun'iy intellekt yordamchisisiz. Ismingiz — Saidazimxon. 
+Sen "Uz Tech" kompyuter do'konining aqlli, bilimdon va samimiy sun'iy intellekt yordamchisisisan. Isming — Saidazimxon. 
 Do'konimiz Farg'ona shahrida joylashgan.
 
 Qoidalar:
-1. Mijozlar bilan o'zbek tilida, xuddi tirik inson kabi erkin, samimiy va iliq muloqot qiling. Quruq bir xil qolipli javoblar yozmang, har bir savolga mazmunli javob bering.
-2. {CHANNEL_LINK} kanalimizdagi barcha noutbuklar, kompyuterlar, printerlar, videokartalar va ehtiyot qismlarni yaxshi bilasiz deb hisoblang. Mijoz nimani so'rasa, uning xarakteristikasini tushuntiring va maslahat bering.
-3. Agar mijoz aniq narx, chegirma yoki buyurtma haqida so'rasa, uni darhol menejerlarimizga yo'naltiring. Ismlarini quyidagi formatda yozing:
+1. Mijozlar bilan o'zbek tilida, xuddi tirik inson kabi erkin, do'stona va ravon muloqot qil. Quruq bir xil qolipdagi javoblarni yozma.
+2. Kompyuterlar, noutbuklar, printerlar va ehtiyot qismlar bo'yicha har qanday savolga o'zing mustaqil mazmunli javob ber, tushuntir va maslahat ber.
+3. Agar mijoz do'konimizda yo'q narsani so'rasa (masalan, kitob yoki qalam), buni madaniyatli va hazilomuz tarzda tushuntirib, bizda kompyuter texnikalari borligini ayt.
+4. Aniq narxlar yoki buyurtma berish haqida gap ketganda, menejerlarimizni quyidagi formatda ko'rsat:
    - [Elmurod](https://t.me/wero_7708)
    - [Axrorbek](https://t.me/A9769)
 """
@@ -85,22 +85,29 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     try:
-        prompt = f"{SYSTEM_INSTRUCTION}\n\nMijozning xabari: {user_text}\nSaidazimxon javobi:"
+        # Promptni yanada aniq va qisqa qilib tuzamiz
+        full_prompt = f"{SYSTEM_INSTRUCTION}\n\nMijoz: {user_text}\nSaidazimxon:"
         
-        # Barqaror gemini-2.0-flash modelidan foydalanamiz
         response = client.models.generate_content(
             model="gemini-2.0-flash",
-            contents=prompt
+            contents=full_prompt
         )
         reply_text = response.text
+        
+        # Agar javob bo'sh kelsa
+        if not reply_text:
+            raise ValueError("Bo'sh javob keldi")
+            
     except Exception as e:
         logging.error(f"Gemini API xatosi: {e}")
-        # Agar API vaqtincha ishlamay qolsa chiqadigan tabiiy zaxira javob
+        # Tabiiy va moslashuvchan zaxira javob
         if "salom" in text_lower or "assalom" in text_lower:
-            reply_text = "Va alaykum assalom! Uz Tech do'koniga xush kelibsiz. Qanday texnika qidirayotgan edingiz, bemalol ayting."
+            reply_text = "Va alaykum assalom! Uz Tech do'koniga xush kelibsiz. Qanday texnika qidirayotgan edingiz?"
+        elif "printer" in text_lower:
+            reply_text = f"Ha, ofis va uy uchun har xil turdagi printerlarimiz bor! Aniq narxlari va qaysi modellari qolganini bilish uchun menejerimiz [Elmurod](https://t.me/wero_7708) bilan bog'lanishingiz mumkin."
         else:
             reply_text = (
-                f"Tushundim! Bu bo'yicha batafsil ma'lumot va aniq narxlarni bilish uchun menejerlarimiz bilan bog'lanishingiz mumkin:\n\n"
+                f"Tushundim! Bu bo'yicha batafsil ma'lumot va narxlarni bilish uchun menejerlarimizga yozishingiz mumkin:\n\n"
                 f"• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
                 f"• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
             )
