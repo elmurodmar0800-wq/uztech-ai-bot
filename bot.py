@@ -17,6 +17,10 @@ logging.basicConfig(
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
+# Kanalingiz havolasi va nomi
+CHANNEL_LINK = "https://t.me/uztech_computers"
+CHANNEL_NAME = "@uztech\_computers"  # Markdown buzilmasligi uchun pastki chiziq ekranlandi
+
 # Gemini mijozini yaratish
 client = genai.Client(api_key=GEMINI_API_KEY)
 
@@ -33,28 +37,29 @@ def run_dummy_server():
     server.serve_forever()
 
 # Manzil va ismlarga to'g'ri berkitilgan havolali kontaktlar dizayni
-CONTACT_INFO = """
-📍 **Do'konimiz manzili:** ([Farg'ona shahri B.Marg`iloniy 69-uy](https://goo.gl/maps/NeV8ogH4ARYnovWi6))
+CONTACT_INFO = f"""
+📍 **Do'konimiz manzili:** Farg'ona shahri ([Google Maps lokatsiyasi](https://goo.gl/maps/NeV8ogH4ARYnovWi6))
 
 👨🏼‍⚖️ **SOTUV MENEJERLARI:**
 • 📞 [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)
 • 📞 [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)
 
 🌐 **BIZNING IJTIMOIY TARMOQLAR:**
-• 📢 [Telegram kanalimiz](https://t.me/uztech_computers)
+• 📢 [Telegram kanalimiz]({CHANNEL_LINK})
 • 📸 [Instagram sahifamiz](https://www.instagram.com/uzteck/)
 """
 
-# Saidazimxon botining xarakteri va yo'riqnomasi (Xuddi insondek, erkin va aqlli muloqot uchun)
-SYSTEM_INSTRUCTION = """
+# Saidazimxon botining yo'riqnomasi
+SYSTEM_INSTRUCTION = f"""
 Siz "Uz Tech" kompyuter do'konining xushmuomala, bilimdon va samimiy sun'iy intellekt yordamchisisiz. Ismingiz — Saidazimxon. 
 Do'konimiz Farg'ona shahrida joylashgan.
 
-Muloqot uslubingiz va qoidalaringiz:
-1. Xuddijonli inson kabi samimiy, iliq, o'zbek tilida ravon va qiziqarli muloqot qiling. Robotga o'xshab quruq gapirmang.
-2. @uztech_computers kanalimizga qo'yiladigan barcha turdagi noutbuklar, kompyuterlar, printerlar, videokartalar, protsessorlar, operativkalar va ehtiyot qismlarni yaxshi bilasiz. Mijoz qanday texnika so'rasa, uning xarakteristikasini tushuntiring, qaysi maqsadlarga (o'yin, o'qish, office, render) mos kelishini maslahat bering.
-3. Agar mijoz salom bersa, xushmuomala bilan hol-ahvol so'rab, qanday texnika qidirayotganini iliq kutib oling.
-4. Aniq narxlar, chegirmalar, zakaz berish va batafsil kelishish uchun doimo menejerlarimiz [Elmurod](https://t.me/wero_7708) yoki [Axrorbek](https://t.me/A9769) bilan bog'lanishni tavsiya qiling.
+Qoidalar:
+1. Mijozlar bilan o'zbek tilida, xuddi inson kabi samimiy, iliq va ravon muloqot qiling.
+2. {CHANNEL_LINK} kanalimizdagi barcha noutbuklar, kompyuterlar, printerlar va ehtiyot qismlarni yaxshi bilasiz. Mijozga mos mahsulotlarni tavsiya qiling.
+3. Aniq narxlar va buyurtma uchun doimo menejerlarimizga yo'naltiring. Bunda ismlarini albatta quyidagi Markdown formatida yozing:
+   - [Elmurod](https://t.me/wero_7708)
+   - [Axrorbek](https://t.me/A9769)
 """
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -63,12 +68,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     welcome_text = (
         f"Assalomu alaykum, {user_first_name} aka!\n\n"
         f"Men **Uz Tech** do'konining sun'iy intellekt yordamchisi — **Saidazimxon**man. 🤖💻\n\n"
-        f"Sizga qanday kompyuter, noutbuk yoki ehtiyot qismlar bo'yicha yordam kerak? Istalgan savolingizni berishingiz mumkin!"
+        f"Sizga qanday kompyuter, noutbuk yoki ehtiyot qismlar bo'yicha yordam kerak? Bemalol murojaat qilishingiz mumkin!"
     )
     await update.message.reply_text(welcome_text, parse_mode="Markdown", disable_web_page_preview=True)
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Mijoz xabarlariga Gemini AI orqali erkin va aqlli javob berish"""
+    """Mijoz xabarlariga javob berish"""
     user_text = update.message.text
     text_lower = user_text.lower()
     
@@ -80,7 +85,6 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     try:
-        # Gemini API orqali to'g'ridan-to'g'ri o'qitilgan xarakterda javob olamiz
         prompt = f"{SYSTEM_INSTRUCTION}\n\nMijozning xabari: {user_text}\nSaidazimxon javobi:"
         
         response = client.models.generate_content(
@@ -90,12 +94,11 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_text = response.text
     except Exception as e:
         logging.error(f"Gemini API xatosi: {e}")
-        # Zaxira holat uchun tabiiy matn
         if "salom" in text_lower or "assalom" in text_lower:
             reply_text = "Va alaykum assalom! Uz Tech do'koniga xush kelibsiz. Qanday texnika qidirayotgan edingiz, bemalol ayting."
         else:
             reply_text = (
-                f"Ha, albatta! Ayni paytda @uztech_computers kanalimizda ko'plab noutbuklar va kompyuter jihozlari mavjud.\n\n"
+                f"Ha, albatta! Ayni paytda {CHANNEL_NAME} kanalimizda ko'plab noutbuklar va kompyuter jihozlari mavjud.\n\n"
                 f"Aniq narxlar va buyurtma berish uchun menejerlarimiz bilan bog'lanishingiz mumkin:\n"
                 f"• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
                 f"• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
