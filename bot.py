@@ -5,7 +5,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from threading import Thread
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
-import google.generativeai as genai
+from google import genai
 
 # Logging sozlamalari
 logging.basicConfig(
@@ -17,9 +17,8 @@ logging.basicConfig(
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
-# Gemini API sozlash
-genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel('gemini-1.5-flash')
+# Gemini mijozini yaratish
+client = genai.Client(api_key=GEMINI_API_KEY)
 
 # Render port xatosini oldini olish uchun soxta Web Server
 class HealthCheckHandler(BaseHTTPRequestHandler):
@@ -33,7 +32,7 @@ def run_dummy_server():
     server = HTTPServer(('0.0.0.0', port), HealthCheckHandler)
     server.serve_forever()
 
-# Do'kon ma'lumotlari
+# Do'kon ma'lumotlari va ish vaqti
 CONTACT_INFO = """
 📍 **Do'konimiz manzili:** Farg'ona shahri ([Google Maps lokatsiyasi](https://goo.gl/maps/NeV8ogH4ARYnovWi6))
 
@@ -48,11 +47,11 @@ CONTACT_INFO = """
 • 📸 [Instagram sahifamiz](https://www.instagram.com/uzteck/)
 """
 
-SYSTEM_PROMPT = """
+SYSTEM_INSTRUCTION = """
 Sen Farg'ona shahridagi "Uz Tech" kompyuter do'konining sun'iy intellekt yordamchisisisan. Isming — Saidazimxon.
-Mijozlar bilan o'zbek tilida juda xushmuomala, ochiqko'ngil va erkin muloqot qil. Quruq bir xil qolipdagi gaplarni yozma.
+Mijozlar bilan o'zbek tilida juda xushmuomala, ochiqko'ngil va erkin muloqot qil. Quruq bir xil qolipdagi takroriy gaplarni yozma.
 Do'konimizda noutbuklar, kompyuterlar, printerlar, videokartalar va barcha turdagi ehtiyot qismlar mavjud.
-Ish vaqtimiz: Dushanbadan shanbagacha, soat 09:00 dan 19:00 gacha.
+Ish vaqtimiz: Dushanbadan shanbagacha, soat 09:00 dan 19:00 gacha. Yakshanba dam olish kuni.
 Agar mijoz aniq narx, chegirma, zakaz yoki texnikalarning batafsil narxini so'rasa, quyidagi menejerlarimizga yo'naltir:
 - [Elmurod](https://t.me/wero_7708)
 - [Axrorbek](https://t.me/A9769)
@@ -73,14 +72,18 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
     
-    # Manzil, ish vaqti yoki kontakt so'ralganda to'g'ridan-to'g'ri chiqaradi
-    if any(word in text_lower for word in ["manzil", "adres", "lokatsiya", "qayerda", "kontakt", "telefon", "ish vaqti", "nechigacha", "vaqt", "ishlaysiz"]):
+    # Manzil, ish vaqti yoki kontakt so'ralganda tayyor matnni chiqaradi
+    if any(word in text_lower for word in ["manzil", "adres", "lokatsiya", "qayerda", "kontakt", "telefon", "ish vaqti", "nechigacha", "vaqt", "ishlaysiz", "shanba", "yakshanba"]):
         await update.message.reply_text(CONTACT_INFO, parse_mode="Markdown", disable_web_page_preview=True)
         return
 
     try:
-        chat = model.start_chat(history=[])
-        response = chat.send_message(f"{SYSTEM_PROMPT}\n\nMijoz savoli: {user_text}")
+        prompt = f"{SYSTEM_INSTRUCTION}\n\nMijoz savoli: {user_text}\nSaidazimxon javobi:"
+        
+        response = client.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=prompt
+        )
         reply_text = response.text
         
         if not reply_text:
