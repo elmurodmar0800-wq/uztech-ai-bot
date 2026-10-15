@@ -1,4 +1,5 @@
 import os
+import re
 import asyncio
 import logging
 from http.server import HTTPServer, BaseHTTPRequestHandler
@@ -45,6 +46,16 @@ def load_products_db():
             return f.read()
     return ""
 
+def clean_word(word):
+    """O'zbek tilidagi ko'plik va kelishik qo'shimchalarini tozalash"""
+    w = word.lower()
+    suffixes = ["larimizni", "larimizga", "larimiz", "laridan", "lariga", "lardan", "larda", "larini", "larim", "lari", "larga", "larni", "lar", "da", "ga", "ni", "si"]
+    for sfx in suffixes:
+        if w.endswith(sfx) and len(w) - len(sfx) >= 3:
+            w = w[:-len(sfx)]
+            break
+    return w
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_first_name = update.effective_user.first_name
     welcome_text = (
@@ -77,20 +88,45 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(CONTACT_INFO, parse_mode="Markdown", disable_web_page_preview=True)
         return
 
-    # Qidiruvda chalkashlik beruvchi va barcha texnikalarda uchraydigan umumiy so'zlar filtri
+    # Qidiruvda e'tiborsiz qoldiriladigan so'zlar
     stop_words = {
-        "bormi", "kerak", "bor", "edi", "haqida", "manga", "menga", "sizlarda", "aka", "do'stim",
-        "fhd", "ips", "100hz", "144hz", "165hz", "180hz", "240hz", "hdmi", "vga", "usb", "ram", "ssd", "hdr", "1mc", "5mc", "27\"", "24\"", "32\"", "34\""
+        "bormi", "kerak", "bor", "edi", "haqida", "manga", "menga", "sizlarda", "aka", "do'stim", "qanaqalari", "qanaqa", "qaysi",
+        "fhd", "ips", "100hz", "144hz", "165hz", "180hz", "240hz", "hdmi", "vga", "usb", "ram", "ssd", "hdr", "1mc", "5mc"
     }
     
-    raw_keywords = [kw.replace('"', '').replace(',', '').replace('(', '').replace(')', '') for kw in text_lower.split()]
-    keywords = [kw for kw in raw_keywords if kw not in stop_words and len(kw) > 1]
+    raw_words = re.findall(r'\w+', text_lower)
+    cleaned_words = [clean_word(w) for w in raw_words if w not in stop_words and len(w) > 1]
     
-    category_words = {"noutbuk", "laptop", "notebook", "printer", "proyektor", "monitor", "kompyuter", "keys", "videokarta", "vga", "router", "wifi", "wi-fi", "mishka", "klaviatura", "telefon"}
+    # Asosiy tovar kategoriyalari
+    categories_map = {
+        "noutbuk": "NOUTBUK", "laptop": "NOUTBUK", "notebook": "NOUTBUK",
+        "printer": "PRINTER", "kserokopiya": "PRINTER",
+        "monitor": "MONITOR", "ekran": "MONITOR",
+        "videokarta": "VIDEOKARTA", "vga": "VIDEOKARTA",
+        "router": "WI-FI ROUTER", "wifi": "WI-FI ROUTER", "roter": "WI-FI ROUTER",
+        "mishka": "MISHKA", "klaviatura": "KLAVIATURA", "naushnik": "NAUSHNIK",
+        "keys": "KORPUS (KEYS)", "kompyuter": "KOMPYUTER", "telefon": "TELEFON"
+    }
 
+    # Tekshiruv: foydalanuvchi faqat umumiy kategoriya so'raganmi?
+    found_categories = [categories_map[w] for w in cleaned_words if w in categories_map]
+    
+    # Agar foydalanuvchi biror aniq model (masalan: C50, L3350, 27PRM100, RTX, i5) yoza olmagan bo'lsa va faqat umumiy so'z bo'lsa:
+    has_specific_model = any(len(w) >= 3 and w not in categories_map for w in cleaned_words)
+    
+    if found_categories and not has_specific_model:
+        cat_name = found_categories[0]
+        reply_text = (
+            f"Do'konimizda turli xil **{cat_name}** modellari yetarlicha bor! 💻✨\n\n"
+            f"Sizga do'konimizda bor-yo'qligini aniq tekshirib berishim uchun **aynan qaysi brend yoki model** (masalan: i5, RTX 3050, L3350 va h.k.) kerakligini yozib bera olasizmi?"
+        )
+        await update.message.reply_text(reply_text, parse_mode="Markdown", disable_web_page_preview=True)
+        return
+
+    # Bazadan qidirish
     db_content = load_products_db()
     
-    if db_content and keywords:
+    if db_content and cleaned_words:
         scored_matches = []
         
         for line in db_content.split("\n"):
@@ -100,32 +136,18 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             
             line_lower = line_str.lower()
             
-            # Asosiy brend/model so'zlari bo'yicha moslik balini hisoblash
             match_score = 0
-            for kw in keywords:
+            for kw in cleaned_words:
                 if kw in line_lower:
-                    # Model kodi yoki brend nomi mos kelsa, yuqori ball beramiz (masalan: primier, 27prm100, l3350 va h.k.)
-                    match_score += 3 if len(kw) > 3 else 1
+                    match_score += 3 if len(kw) >= 3 else 1
             
             if match_score > 0:
                 scored_matches.append((match_score, line_str))
         
-        # Eng ko'p mos kelganini birinchi o'ringa saralash
         scored_matches.sort(key=lambda x: x[0], reverse=True)
         
-        matched_lines = [item[1] for item in scored_matches if item[0] >= 3] if any(item[0] >= 3 for item in scored_matches) else [item[1] for item in scored_matches]
-        
-        # Mujmal va juda umumiy so'ralganda
-        if len(keywords) <= 1 and any(kw in category_words for kw in keywords) and len(matched_lines) > 5:
-            reply_text = (
-                f"Do'konimizda turli xil **{keywords[0].upper()}** modellari yetarlicha bor! 💻✨\n\n"
-                f"Do'konimizda bor-yo'qligini aniq tekshirib berishim uchun **aynan qaysi brend yoki model** kerakligini yozib bera olasizmi?"
-            )
-            await update.message.reply_text(reply_text, parse_mode="Markdown", disable_web_page_preview=True)
-            return
-
-        # Aniq topilgan tovarlarni chiqarish
-        if matched_lines:
+        if scored_matches:
+            matched_lines = [item[1] for item in scored_matches if item[0] >= 3] if any(item[0] >= 3 for item in scored_matches) else [item[1] for item in scored_matches]
             found_text = "\n".join(matched_lines[:8])
             reply_text = (
                 f"Ha, do'konimizda quyidagi mos modellar bor:\n\n{found_text}\n\n"
@@ -136,7 +158,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await update.message.reply_text(reply_text, parse_mode="Markdown", disable_web_page_preview=True)
             return
 
-    # Umuman topilmaganda
+    # Aks holda umumiy javob
     reply_text = (
         f"Tushundim! Bu model bo'yicha do'konimizdagi mavjudlik va narxlarni quyidagi menejerlarimizdan aniqlashtirishingiz mumkin:\n\n"
         f"• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
