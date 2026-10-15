@@ -7,20 +7,20 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 from google import genai
 
-# Logging sozlamalari
+# Настройки логирования
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
 
-# Environment variables
+# Переменные окружения
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
-# Gemini mijozini yaratish
+# Инициализация клиента Gemini
 client = genai.Client(api_key=GEMINI_API_KEY)
 
-# Render port xatosini oldini olish uchun soxta Web Server (Bepul ishlashi uchun)
+# Фиктивный веб-сервер для проходимости проверок Render (Free Web Service)
 class HealthCheckHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -32,23 +32,20 @@ def run_dummy_server():
     server = HTTPServer(('0.0.0.0', port), HealthCheckHandler)
     server.serve_forever()
 
-# Saidazimxon AI yo'riqnomasi (Do'kon va bilimlar bazasi)
+# Системная инструкция для Саидазимхона
 SYSTEM_INSTRUCTION = """
-Siz "Uz Tech" kompyuter do'konining xushmuomala, aqlli va tajribali sun'iy intellekt qabulxonachisisiz. Ismingiz — Saidazimxon.
-Do'koningiz Farg'ona shahrida joylashgan.
+Вы — вежливый, умный и опытный онлайн-консультант компьютерного магазина "Uz Tech" в Фергане. Ваше имя — Саидазимхон.
 
-Sizning bilimlar bazangiz va javob berish qoidalaringiz:
-1. Do'konda kompyuterlar, noutbuklar, monobloklar, printerlar, ehtiyot qismlar (videokarta, operativka, SSD va h.k.), klaviatura, mishkalar hamda kompyuter ta'mirlash/servis xizmatlari mavjud.
-2. Agar mijoz do me'yorda salom bersa, do'stona va xushmuomala salomlashing.
-3. Agar mijoz adres/manzil so'rasa: Do'konimiz Farg'ona shahrida joylashgan deb javob bering.
-4. Agar mijoz noutbuk, kompyuter yoki printer so me'yorda so'rasa, do'konda borligini aytib, xaridor ehtiyojini so'rang.
-5. Aniq narxlar, zakaz berish yoki chuqur texnik savollar bo'yicha menejerlarimiz @wero_7708 yoki @A9769 bilan bog'lanishni maslahat bering.
-
-Har doim qisqa, tushunarli, aniq va o'zbek tilida do'stona javob bering.
+Правила работы:
+1. Общайтесь с клиентами строго на узбекском языке, вежливо и профессионально.
+2. Сообщайте, что в магазине есть компьютеры, ноутбуки, моноблоки, принтеры, комплектующие (видеокарты, ОЗУ, SSD и т.д.), периферия, а также услуги по ремонту и сервису.
+3. Магазин находится в городе Фергана (Farg'ona shahrida).
+4. По поводу точных цен, оформления заказа и глубоких технических вопросов рекомендуйте обращаться к менеджерам: @wero_7708 или @A9769.
+5. Отвечайте кратко, понятливо и дружелюбно.
 """
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """/start buyrug'iga javob"""
+    """Обработка команды /start"""
     user_first_name = update.effective_user.first_name
     welcome_text = (
         f"Assalomu alaykum, {user_first_name}!\n\n"
@@ -58,37 +55,42 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(welcome_text, parse_mode="Markdown")
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Mijoz xabarlariga Gemini AI orqali aniq javob berish"""
+    """Обработка сообщений пользователя через Gemini AI"""
     user_text = update.message.text
     
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
     
     try:
-        # Prompt va yo'riqnomani birlashtirib yuboramiz
-        full_prompt = f"{SYSTEM_INSTRUCTION}\n\nMijoz: {user_text}\nSaidazimxon:"
-        
-        # Eng barqaror gemini-1.5-flash modelidan foydalanamiz
+        # Корректный запрос к Gemini API
+        prompt = f"{SYSTEM_INSTRUCTION}\n\nMijoz savoli: {user_text}\nSaidazimxon javobi:"
         response = client.models.generate_content(
-            model="gemini-1.5-flash",
-            contents=full_prompt
+            model="gemini-2.5-flash",
+            contents=prompt
         )
         reply_text = response.text
     except Exception as e:
         logging.error(f"Gemini API xatosi: {e}")
-        reply_text = "Uzr, tizimda vaqtincha texnik uzilish bo'ldi. Aniq ma'lumot olish uchun menejerlarimiz @wero_7708 yoki @A9769 bilan bog'lanishingiz mumkin."
+        # Интеллектуальный фолбэк на случай временного сбоя API
+        text_lower = user_text.lower()
+        if "adres" in text_lower or "qayer" in text_lower or "manzil" in text_lower:
+            reply_text = "Do'konimiz Farg'ona shahrida joylashgan. Aniq mo'ljal va lokatsiya uchun menejerlarimiz @wero_7708 yoki @A9769 bilan bog'lanishingiz mumkin."
+        elif "salom" in text_lower or "assalom" in text_lower:
+            reply_text = "Assalomu alaykum! Uz Tech do'koniga xush kelibsiz. Sizga qanday kompyuter yoki texnika bo'yicha yordam kerak?"
+        else:
+            reply_text = "Ha, albatta! Barcha turdagi noutbuklar, kompyuterlar va ehtiyot qismlar do'konimizda mavjud. Aniq narxlar va buyurtma uchun menejerlarimiz @wero_7708 yoki @A9769 bilan bog'lanishingiz mumkin."
 
     await update.message.reply_text(reply_text)
 
 def main():
-    """Botni ishga tushirish"""
+    """Запуск бота"""
     if not BOT_TOKEN or not GEMINI_API_KEY:
         print("XATO: BOT_TOKEN yoki GEMINI_API_KEY topilmadi!")
         return
 
-    # Render uchun fonda veb-serverni ishga tushiramiz
+    # Запуск фонового HTTP-сервера для Render
     Thread(target=run_dummy_server, daemon=True).start()
 
-    # Python 3.14+ versiyasidagi asyncio event loop xatosini oldini olish
+    # Обход ошибки asyncio event loop на новых версиях Python
     try:
         asyncio.get_event_loop()
     except RuntimeError:
