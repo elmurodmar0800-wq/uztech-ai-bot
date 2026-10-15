@@ -1,0 +1,454 @@
+=== DDR SSD HDD MB VGA ===
+- Kingston HyperX FURY DDR3 4GB 1600MHz
+- Kingston DDR3 8GB 1600Mhz
+- Crucial DDR4 8GB 2666Mhz
+- Lexar DDR4 8GB 3200Mhz
+- Kingston DDR4 4GB 2666Mhz
+- Kingston DDR4 8GB 2666Mhz
+- Kingston DDR4 16GB 2666Mhz
+- Kingston DDR4 4GB 2666Mhz SODIMM
+- Kingston DDR4 8GB 3200Mhz SODIMM
+- Kingston DDR4 16GB 3200Mhz SODIMM
+- Lexar 32GB (2x16GB) ARES RGB DDR4 RAM 3600MT/s
+- DDR5 32Gb 6000MHz Kingston Fury Beast RGB (KF560C40BBAK2-32) (2x16Gb KIT)
+- Kingston DDR4 32GB 3600Mhz (16*2) RGB FURY
+- Aorus DDR4 16GB 3733Mhz (8*2) RGB Memory (GP-ARS16G37)
+- Aorus DDR4 16GB 4400Mhz (8*2) RGB Memory (GP-ARS16G44)
+- Lexar Ares RGB DDR4 16GB (2 x 8 GB) 3600 Mhz
+- Intel core i3 2100
+- intel core i5 2400
+- Intel Core i7 2600
+- Intel Core i5 4460 3.1 GHz OEM LGA 1155
+- Intel-Core i3 - 12100, 3.3 GHz, 12MB, oem, LGA1700, Alder Lake
+- Intel-Core i5 - 12400F, 2.7 GHz, 18MB, oem, LGA1700, Alder Lake
+- Intel-Core i5 - 12400, 2.7 GHz, 18MB, oem, LGA1700, Alder Lake
+- Intel-Core i7 - 12700, 3.2 GHz, 25MB, oem, LGA1700, Alder Lake
+- Intel-Core i7 - 12700F, 3.2 GHz, 25MB, oem, LGA1700, Alder Lake
+- HDD 1TB Toshiba Surveillance S300 HDWV110UZSVA 5700Rpm Original OEM
+- HDD 2TB Toshiba Surveillance S300 HDWT720UZSVA 5400Rpm Original OEM
+- HDD 4TB Toshiba Surveillance S300 HDWT840UZSVA 5400Rpm Original OEM
+- HDD 6TB Toshiba DT02ABA600 5400Rpm 128MB buffer Original oem
+- HDD 8TB Toshiba Surveillance S300 HDWT380UZSVA 7200Rpm 256MB buffer Original oem
+- HDD 10TB Toshiba Surveillance S300 HDWT31AUZSVA 7200Rpm 256MB buffer Original
+- SP Silicon Power Power Armor A85B (1T)
+- SP Silicon Power Power Armor A60 (4T)
+- SP Silicon Power Power Armor A75 (1T)
+- SP Silicon Power Power Armor A65B (1T)
+- SP Silicon Power Power Armor A60 (1T)
+- Axle - 8GB ATI Radeon RX580 256Bit GDDR5
+- Arktek - 4GB GeForce GT1050Ti 128Bits GDDR6
+- Galax - 4GB GeForce GTX1650 128Bit GDDR5 (G-T66O-65SQL8DS93E1)
+- ASUS LOW-PROFILE DESIGN RTX 3050 6GB/96BIT
+- MSI VENTUS 2X RTX4060. 8GB GDDR6
+- Gigabyte - 12GB GeForce RTX3060 WINDFORCE OC GV-N3060WF2OC-12GD
+- Gigabyte - 8GB GeForce RTX5060 WINDFORCE GV-N5060WF2-8GD
+- ASUS - 8GB GeForce RTX5060 DUAL OC GDDR7 (90YV0N12-M0NA00)
+- MSI - 8GB GeForce RTX5060Ti SHADOW 2X OC PLUS (912-V536-003)
+- AVT 600W KS600
+- AVT 650W 650X-LI-LED
+- AVT 850W EA285 LSD
+- AVT 850W 850Z-LI
+- AVT 1000W 1000X-LI-LED
+- AVT 1500W X-LI-LED
+- AVT 2000W AVR
+
+=== НОУТБУК AIO ===
+- HP OmniBook 3 Laptop 14-hu0000ca Intel® N-series - N150 /DDR5 4GB RAM/ 128 GB UFS / 35.6 cm (14"), 2K (1920 x 1200) / Windows 11 Home Memory4 GB RAMIntel® N-series - N150 Memory4 GB RAM
+- HP 15-fc0122nia (0J8) (AMD Ryzen 5-7520U/ DDR4 8GB/ SSD 512GB/ 15,6" FHD LED/ AMD Radeon Graphics/ Backlit/ NoOS/ RU) Silver (AE0J8EA)
+- HP 15-fd0912tu (5YZ) (Intel Core 5-120U/ DDR5 8GB/ SSD 512GB/ 15.6" FHD LED/ Intel UHD Graphics/ Backlit/ NoOS/ RU) Silver (D35YZPA)
+- HP OmniBook Flip 5 14-FP0013DX ( 14" 2K IPS 300nit Multitouch | Core™ 5-120U | LPDDR5 8GB | SSD 512GB )
+- HP OmniBook 5 Flip 14-fp0023dx (14" IPS WUXGA 300nits | Core™ 7-150U | LPDDR5 16GB | SSD 512GB)
+- HP OmniBook X Flip 14-fm0013dx (UJ1) (Intel Core Ultra 5-226v/ DDR5 16GB/ SSD 512GB/ 14" WUXGA Touchscreen/ Integrated Intel® Arc 130V/ Backlit/ Win11H/ Eng) Blue (B5UJ1UA)
+- HP OmniBook 3 16-by0015dx (NF2) (AMD Ryzen 5-40/ DDR5 8GB/ SSD 256GB/ 16" 2K Touch/ Integrated AMD Radeon 610M/ Win11/ Eng) Glacier Silver (D7NF2UA)
+- HP Victus 15-fa2013dx (5WH) (Intel Core i5-13420H/ DDR4 8GB/ SSD 512GB/ 15,6" FHD 144Hz/ 6GB GF RTX3050/ Backlit/ Win11/ RU) Black (B95WHUA)
+- HP 15-FD1355TU Intel Core 5-120U / 8 ГБ / 256 ГБ / 15.6″ FHD IPS / Silver
+- Acer Aspire 1 A114-33-C13A 14", Intel Celeron N4500 /4ГБ DDR4 / ssd 128ГБ Flash/ 14" 1366х768 пикселей
+- Acer Gadget E10 (AMD Ryzen 5-3500/ DDR4 8GB/ SSD 256GB/ 15.6 FHD IPS/ AMD Radeon Graphics/ Backlit/ Win11/ RU) Grey (ZL.OTH11.03U)
+- Acer Aspire Go 15 (Intel Core i3-N355/ DDR5 8GB/ UFS 128GB/ 15.6" FHD/ Intel UHD Graphics/ Win11/ RU) Steel Gray (NX.JJLAA.001)
+- Acer Aspire Lite AL15-52P (Intel Celeron N4500/ DDR4 8GB/ SSD 512GB/ 15.6 FHD IPS/ Intel UHD Graphics/ NoOS/ RU) Silver (NX.JB8ER.001) (официальный)
+- Acer Aspire Lite AL16-54P (Intel Core i3-1305U/ DDR5 8GB/ SSD 256GB/ 16" WUXGA IPS/ Intel UHD Graphics/ NoOS/ RU) Silver (NX.JN0EM.001)
+- Acer Aspire Go 15 (AMD Ryzen 5-7520U/ DDR5 8GB/ SDD 512GB/ 15.6" FHD IPS Touch/ AMD Radeon Graphics/ Win11/ RU) Silver (NX.JJJAA.004)
+- Acer Nitro 5 AN515-58-56W4 Core i5 12500H DDR4 8Gb SSD512Gb NVIDIA GeForce RTX 3050 4Gb 15.6" IPS FHD (1920x1080) Eshell black WiFi BT Cam (NH. QFJER.002)
+- Acer Nitro 5 AN515-58-56W4 Core i5 12500H DDR4 16Gb SSD512Gb NVIDIA GeForce RTX 3050 4Gb 15.6" IPS FHD (1920x1080) Eshell black WiFi BT Cam (NH. QFJER.002)
+- Lenovo IdeaPad 1 15IJL7 (Intel Celeron N4500/ DDR4 8GB/ SSD 256GB/ 15.6 FHD LCD/ Intel UHD Graphics/ No DVD/ DOS/ RU) Cloud Grey (82LX00D7PS)
+- Laptop Lenovo Yoga 7 2 en 1 Intel Core Ultra 7 155U 16 GB DDR5 RAM 1TB SSD 16" WUXGA
+- ASUS Vivobook Go 15 (Intel Core i3-N305/ DDR4 8GB/ SSD 256GB/ 15,6" FHD/ Intel UHD Graphics/ Win11/ RU) Silver (90NB0ZT1-M02580 / E1504GA-WS35)
+- ASUS Vivobook Go 15 (AMD Ryzen 3-30/ DDR5 8GB/ SSD 512GB/ 15.6" FHD IPS/ AMD Radeon 610M/ NoOS/ RU) Black (90NB0ZR2-M056N0 / E1504FA-BQ3391)
+- ASUS Zenbook Q415MA Intel Core Ultra 5-125H| DDR5 8GB| SSD 512GB| 14″ WUXGA OLED Touch| Intel UHD Graphics| Win11| RU| Grey
+- ASUS TUF Gaming A18 (AMD Ryzen 7-260/ DDR5 16GB/ SSD 512GB/ 18,0" FHD 144Hz/ 8GB GF RTX5060/ Backlit/ NoOS/RU) Jaeger Gray (90NR0NN1-M001M0 / FA808UM-S8030)
+- Dell Vostro 3520 (Intel Core i5-1235U/ DDR4 8GB/ SSD 512GB/ 15.6 Full HD LCD/ Intel UHD Graphics/ NoOS/ RU) Black
+- Dell Inspiron 15 3530 (Intel Core i5-1334U/ DDR4 8GB/ SSD 512GB/ 15.6” FHD LCD 120hz/ Intel UHD Graphics/ Backlit/ NoOS/ RU) Black (официальный)
+- Chuwi GemiBook Plus CWI629 (Intel Pentium Silver N5030/ DDR4 8GB/ SSD 256GB/ 15.6" FHD/ Intel UHD Graphics/ Win11/ RU) Silver
+- Apple Macbook Neo 13 (A18 Pro/ 6 CPU/ 5 GPU/ LPDDR 8GB/ SSD 256GB/ 13 IPS 2408×1506/ RU) (Z1TU00020/MHFH4)
+- Lenovo V50a-24IMB AIO (Intel Core i5-10400T/ DDR4 8GB/ SSD 256GB/ 23,8 IPS FHD LCD/ Integrated Intel UHD Graphics/ Keyboard+mouse/ NoOS/ RU) Raven Black (11FJ00AJRU)
+- Lenovo IdeaCentre 3 24ITL6 / 23.8" FHD / Intel Core i5-1135G7 / 8GB DDR / 1T HDD Black - F0G0008XAX
+- HP 24-cb1004l (2K4) (Intel Core i5-1235U/ DDR4 8GB/ SSD 512GB/ 23,8 FHD/ Intel Iris Xe Graphics/ No DVD/ key + mouse/ NoOS/ RU) White (9S2K4PA)
+- HP 24-cr0011l (8L2) (Intel Core i5-1335U/ DDR4 8GB/ SSD 512GB/ 23,8 FHD/ Intel Iris Xe Graphics/ No DVD/ key + mouse/ NoOS/ RU) White (AV8L2PA)
+- HP 24-cr0264l (RS0) (AMD Ryzen 5-7520U/ DDR5 8GB/ SSD 512GB/ 23,8 FHD/ AMD Radeon Graphics/ No DVD/ key + mouse/ NoOS/ RU) White (A4RS0EA)
+- HP 27-cr0008l (JC2) (Intel Core i5-1335U/ DDR4 16Gb/ SSD 512Gb/ 27" FHD IPS/ Intel Iris Xe Graphics/ key+mouse/ NoOS/ RU) White (B7JC2PA)
+- NONEM 24" IPS H61 ( Вебкамера WiFi) black
+- Xtech 24" IPS H610 Flat Model: S238 Flat ( Вебкамера WiFi M.2 nvme) white
+- Баребон AVTECH F2 (Touch screen) WITH MOTHERBOARD H310D4
+- Uz computers sumka 15,6
+- WiWU Vivi Laptop Handbag с ручками 15.6
+- Wiwu Hali Laptop Sleeve 14 дюйм
+- Wiwu Hali Laptop Sleeve 16 дюйм
+- Wiwu Alpha Double Layer 14 черная | Xline Parts
+- wiwu minimalist BAG 15,6
+- wiwu Alpha Slim Sleeve
+- WIWU Pioneer HandBag
+- WIWU Skin Armor Sleeve
+- WIWU 14 Hali Vertical Layer Bag
+- WIWU Ora Tote 16
+- WIWU Cozy Classic Case 16 inch
+- back pack 166 рюкзак для ноутбука 15,6 blek
+- Рюкзак Wiwu Pilot 15,6”
+- Рюкзак Wiwu Minimalist Минималистичный водонепроницаемый рюкзак Wiwu
+- Сумкача travolik 008
+- Сумкача travolik 1188 belga
+- Noutbook chexol 15.6
+- Mikuso Cooling Pad PEIPAH-6 (NCP-066)
+- Mikuso Tornado-2 NCP-236
+- MIKUSO NCP-784 oхлаждающая подставка для ноутбука с 4 вентиляторами
+- Yl 019 RGB Gaming Cooler Pad
+- Столик для ноутбука и планшента
+- AVT 600W KS600
+- AVT 650W 650X-LI-LED
+- AVT 850W EA285 LSD
+- AVT 850W 850Z-LI
+- AVT 1000W 1000X-LI-LED
+- AVT 1500W X-LI-LED
+- AVT 2000W AVR
+- HuntKey CP6000 600W
+- FPMAX Formula FX-600 600W
+- Huntkey MVP K1000X 1000W / 80+ Gold
+- Блок питание Gigabyte GP-P750BS 750W, 120mm, 80 Plus Bronze, ATX Power Supply
+- Блок питание Gigabyte GP-P850GM 850W, 120mm, 80 Plus Gold, Modular ATX Power Supply
+- MSI MPG A750GF, 80 PLUS Gold, 750W Power Supply
+
+=== МОНИТОР ===
+- Pixel - 27" PXG27QX Gaming Monitor, IPS, 240Hz, 1mc, QHD (2560*1440) 2K, HDMI, Display port, HAS
+- Pixel - 34" PXG34WQC Gaming Curved Monitor, VA, 200Hz, 1mc, QHD (2560*1440), HAS, HDMI, Display port, Speakers
+- Pixel - 32" PXG32FCX Gaming Curved Monitor, VA, 240Hz, 1mc, FHD (1920*1080), HAS, HDMI, Display port
+- Primier - 24" 24PRM100 Frameless Monitor, IPS, 100Hz, FHD (1920x1080), VGA+HDMI (без рамки) Black
+- Primier - 27" 27PRM100 Frameless Monitor, IPS, 100Hz, FHD (1920x1080), VGA+HDMI (без рамки) Black
+- Redmi - 24" A24 Desktop Monitor, IPS, 100Hz, 6mc, FHD (1920x1080), HDMI+DP, (P24FBB-RA)
+- Redmi - 27" A27 Desktop Monitor, IPS, 100Hz, 6mc, FHD (1920x1080), HDMI+DP, (P27FBA-RA)
+- Redmi - 27" A27U 4K Monitor, IPS, 60Hz, 6mc, UHD (3840x2160), HDMI+DP, (P27UCA-RA)
+- Redmi - 27" A27Q 2025 Monitor, IPS, 100Hz, 1mc, QHD (2560x1440), HDMI+DP, (P27QCA-RA)
+- Redmi - 27" G27Q 2025 Gaming Monitor, IPS, 180Hz, 1mc, QHD (2560x1440), HDMI+DP, (P27QCB-RG) (маркировка)
+- Gigabyte - 32" GS32QCA-EK Curved Gaming Monitor, VA, 180hz, 1mc, QHD (2560x1440), 2K, HDMI, DisplayPort, Black
+- LG 24MK400-B 23.8", IPS, 1920x1080 (Full HD), 5 мс, 75 Гц, AMD FreeSync, 250 кд/м2, 178°/178°, VGA..
+- AVTECH | Curved | PRO3000 27CD | 165 Гц | 27'' | Full HD (1920x1080) | IPS | VGAx1,DisplayPortx1,HDMIx1 | матовое | 1мс |
+- Lenovo - 24" L24-4e Monitor, IPS, 4ms, 100Hz, FHD (1920x1080), HDMI, VGA, Raven Black (68C2KAC1EU) (маркировка)
+- AVT MA200B-24S / 100Hz / VA / 23.8"
+- HP - 22FW IPS LED Monitor HDMI FHD (1920x1080) (3KS60AA), White
+- HP - 27" 527SW LED Monitor, IPS, 100Hz, 5mc, FHD (1920x1080), VGA+HDMI, Silver White (94F46E9) (маркировка)
+- MSI MAG 275QF E20 27" IPS QHD 200Hz Gaming Monitor
+
+=== ПРИНТЕР ===
+- Epson M1120 (A4, струйный, 15 стр/мин, 1440x720 dpi, 1 краска, USB2.0)
+- Epson M1140 (A4, струйный, 20 стр/мин, 1200x2400 dpi, 1 краска, USB2.0, двусторонняя печать)
+- Epson M1170 (A4, струйный, 39 стр/мин, 2400x1200 dpi, 1 краска, USB2.0, двусторонняя печать)
+- Epson M2120 (A4, струйное МФУ, 32 стр/мин, 1440x720 dpi, 1 краска, USB2.0, WiFi)
+- Epson M2140 (A4, 39 стр/мин, 1 краска, струйное МФУ, LCD, USB2.0, двусторонняя печать)
+- Epson M2170 (A4, струйное МФУ, 32 стр/мин, 1440x720 dpi, 1 краска, USB2.0, WiFi)
+- МФУ Epson M3140
+- Epson M3170 (A4, струйное МФУ, 32 стр/мин, 1440x720 dpi, 1 краска, USB2.0, WiFi)
+- Epson L121 (A4, струйный, 9 стр/мин, 720 dpi, 4 краски, USB2.0)
+- Epson L3200 (A4, струйное МФУ, 15стр/мин, 5760x1440dpi, 4краски, USB2.0)
+- Epson L3250 (A4, струйное МФУ, 33стр/мин, 5760x1440dpi, 4 краски, USB2.0, WiFi)
+- Epson L3350 (A4, струйное МФУ, 33 стр/мин, 5760×1440 dpi, 4 краски, USB 2.0, Wi-Fi, Wi-Fi Direct)
+- Epson L8050 (A4, 5760x1440 dpi, 6 красок, USB2.0, WiFi, печать на CD/DVD)
+- Epson L8100 (A4, струйное МФУ, LCD, 22стр/мин, 4800x1200dpi, 6краски, USB2.0, WiFi)
+- Epson L8180 (A3+,струйн.МФУ,LCD,16стр/мин,5760x1440dpi,6красок,USB2.0,WiFi,сетевой,двуст.печать,CR,печать наCD/DVD)
+- Epson L18050 (A3+, 15 стр / мин, 5760x1440 dpi, 6 красок, USB2.0) (сервис, с гарантией)
+- Canon I-SENSYS LBP-2900 (A4, 2Mb, 12 стр/мин, 600dpi, USB2.0, лазерный)
+- Canon i-SENSYS LBP631CW (A4, 18 стр/мин, 1Gb, LCD, 1200dpi, USB2.0, лазерный, сетевой, WiFi)
+- Canon ImageClass MF3010 (A4, 18 стр / мин, 64Mb, лазерное МФУ, USB2.0)
+- Canon ImageClass MF232w (A4, 23 стр/мин, 256Mb, лазерное МФУ, USB2.0, WiFi)
+- Canon i-SENSYS MF237w (A4, 256Mb, 23 стр/мин, лазерное МФУ, факс, ADF, USB 2.0, сетевой, WiFi)
+- Canon i-SENSYS MF264dw (A4, 256Mb, 28 стр/мин, лазерное МФУ, LCD, ADF, двусторонняя печать, USB 2.0, сетевой,WiFi)
+- Canon i-SENSYS MF463dw (A4, 1Gb, 40 стр/мин, лаз.МФУ, LCD, DADF, двуст. печать, USB 2.0, сетевой, WiFi)
+- Canon i-SENSYS MF657Cdw (A4, 1Gb, 21 стр/мин, цв. лазерное МФУ, LCD,DADF,двуст.печать,USB2.0,сетевой,WiFi)
+- Canon PIXMA GM2040 (Струйный Ч/Б)
+- Canon PIXMA GM4040
+- Canon - PIXMA G2416 (A4, 8.8 стр/мин, струйное МФУ, LCD, USB2.0)
+- Canon - PIXMA G2430 (A4, 11 стр/мин, струйное МФУ, USB2.0)
+- Картридж Canon 070 для MF465dw
+- Картридж 7Q Seven Quality 052
+- Картридж 7Q Seven Quality 070
+- Картридж MAETONE 057H
+
+=== TP LINK WIFI  TV PRIS ===
+- TP-Link TL-WA 860 RE Range Extender
+- TP-Link TL-WA 850 RE 850 Range Extender
+- LTE Wi-Fi роутер TP-Link M7010
+- TP-LINK Archer C60
+- TP-LINK Archer A6
+- Tp_Link Archer A5
+- TP-LINK Archer C24
+- Tp_Link Archer C64
+- TP_Link TL-WR844N
+- TP_Link TL-WR841N
+- TP-LINK Archer C50
+- Tp_Link Archer C20
+- TP LINK WR 840N
+- TP LINK WR 842N
+- Tp_Link VN020F3 Маршрутизаторы ADSL/VDSL
+- TP-LINK Archer C6
+- TP-LINK TD-W9970 (ADSL & VDSL + USB Port + WAN Port)
+- Tp_Link TD-W8961N (ADSL2+)
+- TP-Link Archer AX10 – AX1500 Wi-Fi 6 Router
+- Archer AX12 AX1500 Wi-Fi 6 Router
+- Mercusys AC10 Двухдиапазонный Wi-Fi роутер
+- Mercusys AC12
+- Mercusys MR30G AC1200 Gigabit
+- MR50G(RU) (AC1900 Wireless Dual Band
+- HUAWEI WiFi AX2 Поддержка 5 ГГц и Wi-Fi 6 | HarmonyOS Mesh+
+- HUAWEI AX3 Dos nucleos Wi-Fi 6 Plus 3 000 Мбит/с1
+- Xiaomi Mi Wi-Fi Router 4A
+- LB-LINK 4G LTE BL-CPE450H
+- Модем 4G Corex CPE-903 A9SW, Wi-Fi роутер,
+- TP-Link LS1008 LiteWave с 8 портами 100 Мбит
+- TP-Link 16-Port 100Mbps Desktop Switch – TL-SF1016D
+- TL-SF1024M 24 портами 10/100 Мбит/с
+- TP-Link TL-SG1008D Gigabit
+- TP-Link TL-SG1005D Gigabit
+- TL-SG1016D 16 портов 10/100/1000 Мбит/с
+- TL-SG1024D 24 портов 10/100/1000 Мбит/с
+- TP-Link T2600G-18TS (TL-SG3216) 16-портовый
+- HUB Tenda TEG 1016D 16p Gigabit
+- TP-Link Гигабитный сетевой адаптер PCI Express TG-3468
+- Tenda AX300 Wi-Fi 6 U2
+- TP-LINK TL-WN821N Скорость. Надёжность
+- TP-LINK TL-WN823N Быстрый интернет
+- TP-LINK TL-WN727N — Бюджетный Wi-Fi адаптер
+- TP-LINK TL-WN725N
+- ТВ приставка H96 Mini H8 Android TV Box Smart TV Box Media Play 2Гб 16Гб Goole Play TV Box
+- Smart TV приставка H96 MAX 2/16 GB
+- Smart TV приставка H96 MAX 4/32 GB
+- Smart TV приставка H96 MAX 4/64 GB
+- Смарт ТВ приставка X96Q Pro 2/16GB
+- ТВ приставка Tv box T95Z plus 2/16
+- ТВ приставка Tv box T95Z plus 4/32
+- ТВ приставка Tv box T95Z plus 4/64
+- Xiaomi TV Stick 4K
+- XIAOMI TV BOX S (2ND GEN)
+
+=== KOPLEKTUSHI ===
+- METOO C20 WHITE
+- METOO C20 BLEK
+- RAPOO K10
+- Rapoo NX 2000
+- Rapoo X120Pro
+- Rapoo X1960 Беспроводной клавиатура + мышь
+- Rapoo 8210M
+- Rapoo 9350M
+- Rapoo 9000M
+- Rapoo 9500M
+- Rapoo 9900M
+- Rapoo 9350S
+- Rapoo 9010M White
+- Rapoo 9010M Black
+- AULA 101
+- Aula AC203 2.4GHz
+- AULA F3287
+- AULA S2022
+- Aula F2058 Gaming Keyboard -Switch Red
+- AULA F2028 RGB USB
+- Aula T650 RGB,
+- A4TECH KR 8520 USB (WHITE)
+- A4Tech KR-8520D
+- A4Tech FG1010, Grey
+- A4Tech FG1010, White
+- A4Tech FB2535C Black
+- A4Tech FB2535C (ICY WHITE)
+- A4tech FG2400 white
+- A4Tech 9300F
+- A4Tech 9200F
+- A4tech 7200N
+- Logitech MK235 Wireless
+- Logitech MK270
+- Logitech MK295 Silent Wireless
+- Logitech MK540 ADVANCED Black USB
+- Bloody Q1300 Клавиатура и мышь
+- Bloody Q135 ILLUMINATE USB Игровая проводная клавиатура
+- Bloody B150N USB Black
+- Bloody B318, USB Black
+- MOTOSPEED CK73 Механическая клавиатура
+- Motospeed K87S Проводная Механическая игровая клавиатура со светодиодной RGB подсветкой, 87 клавиш
+- Motospeed CK61 Механическая клавиатура
+- Motospeed CK62 Outemu Blue Black Bluetooth/USB
+- Motospeed CK82 с RGB-подсветкой
+- Motospeed CK108 Механическая Проводная с RGB-подсветкой
+- Motospeed CK99 Механическая Проводная с RGB-подсветкой
+- Motospeed CK80 Механическая Проводная с RGB-подсветкой
+- Motospeed CK888 Механическая Проводная с RGB-подсветкой Игровая клавиатура
+- Motospeed CK700 PRO Механическая Проводная с RGB-подсветкой Игровая клавиатура
+- Blitz GK-240L Механическая клавиатура
+- GAMDIAS ARES|P2 3 в 1
+- DKS-023 Wireless
+- DK-810 Black Wireless
+- DK-830 Wireless
+- METOO EOSE (Беспроводной)
+- METOO E16 (Беспроводной)
+- METOO E13 (Беспроводной)
+- METOO E12SE (Беспроводной)
+- METOO E10 (Беспроводной)
+- METOO E8 (Беспроводной)
+- METOO E6 (Беспроводной)
+- ME TOO E5 Wireless Bluetooth Mouse
+- Rapoo 1680
+- Rapoo M160 silent
+- Rapoo M500, Red
+- Rapoo M500, Gray
+- A4Tech FG10
+- A4TECH Fstyler FG20, оптическая, беспроводная, USB
+- A4Tech Fstyler Fg30S
+- A4Tech FG35 Fstyler 2.4G Wireless
+- A4Tech 620d
+- A4Tech Oscar X7
+- A4Tech G3-310N
+- LOGITECH G403 HERO Игровые мыши
+- Logitech M238, USB, флаги
+- Logitech G102 LIGHTSYNC
+- LOGITECH M280 COMFORT PLUS
+- Logitech m240 silent, бесшумный клик, Bluetooth
+- Logitech M185
+- Logitech M171 Wireless Mouse Black USB
+- Logitech M190 Беспроводная мышь
+- LOGITECH PEBBLE Беспроводная мышь
+- Logitech M196, Bluetooth Беспроводная мышь
+- Motospeed V70 RGB USB Black
+- MOTOSPEED V90 RGB 10000DPI
+- Motospeed V100 RGB USB Black
+- ASUS TUF Gaming M3
+- Презентер Logitech R500s
+- Logitech Wireless Presenter R400
+- Edifier W800BT Plus ) Red
+- Redragon Mento H270RGB
+- Redragon HYLAS H260RGB
+- Redragon LAGOPASMUTUS-2 H201-1
+- Redragon PELIAS H130
+- Redragon SCREAM H231RGB
+- Koss CS200 USB WB RW, проводные наушник
+- AULA S608
+- AULA S606 RGB
+- AULA S605 RGB
+- AULA S505 Беспроводная гарнитура
+- 550BT Беспроводная гарнитура
+- Airpods Max P9
+- Kubite T-803
+- Kubite F15 RGB USB
+- Logitech G435
+- AKZ-K59
+- Zidli ZH27 ( 7.1, USB, LED)
+- ZIDLI ZH20 7.1 LED RGB USB
+- ZIDLI ZH21 Gaming RGB Headset
+- ZIDLI ZH17 Gaming RGB Headset
+- ZIDLI ZH8 Gaming RGB Headset
+- A4Tech BH300 – Стиль и свобода без проводов!
+- Poly Blackwire 3220 USB
+- Яндекс Алиса
+- Яндекс Станция Лайт, с голосовым помощником Алиса
+- Яндекс Станция Лайт 2
+- Яндекс Станция Мини 2 — умная колонка с Алисой и YandexGPT
+- Яндекс Станция Мини 3 с Алисой на YaGPT
+- Яндекс Станция Миди
+- ЯНДЕКС СТАНЦИЯ 2 – КОБАЛЬТОВО-СИНЯЯ
+- Kisonli X3 Компьютерная акустика
+- Kisonli K500
+- Kisonli X12
+- Kisonli L5050
+- isonli X11
+- Kisonli KS-07
+- Kisonli X16
+- Kisonli KS-10
+- Kisonli L4040
+- Kisonli A909
+- Fenda R23BT
+- Fenda F590X
+- Fenda R40BT
+- Fenda T-200X 2.1 Akustik Tizimi
+- Fenda F670X
+- Fenda F3800X
+- Fenda HT-230
+- Microlab M-108
+- Microlab M-106 BT
+- DEEPCOOL FAN HUB 4 ports FH-04 Support PWM
+- Адаптер-переходник Cablexpert VGA на HDMI/VGA+Аудио 3.5 (A-VGA-HDMI-02)
+- VGA на HDMI + аудио 3.5мм 1080 VGA2HDMI
+- HDMI UMNOJITEL X2
+- Type C to HDMI Adapter
+- Adaptador Usb 3.0 a VGA
+- Display port (DP) to HDMI 4K 10sm
+- Адаптер SATA-USB 3.0, кабель типа C-SATA
+- USB Sound 5Hv2 7.1 симли
+- HDD SSD USB 3.0 Коробка Чехол для ПК
+- ACER ДОК-СТАНЦИЯ HP.DSCAB.009
+- Delincol TURE C TO USB HUB
+- Адаптер USB C — Ethernet с 3 портами USB 3.0
+- Хаб USB type-C адаптер-переходник 8 в 1: HDMI 4K, RJ45, TF/SD, USBx2, Type-C PD 87W
+- USB 3.0 Gigabit Ethernet Adapter
+- Kisonli HD-1085
+- Logitech C270 HD/K
+- Rapoo C260
+- Kisonli D1 4K HD Веб-камера
+- RAPOO C500AF
+- RAPOO C200
+
+=== COUGAR ===
+- Игровой стол Cougar E-Star 120 (EU)
+- Игровой стол Cougar E-Star 140 (EU)
+- Игровой стол Cougar E-Grav 160 (EU)
+- Gaming Chair Cougar Speeder One
+
+=== CASE ===
+- MSI MPG Gungnir 300R Airflow Black ATX PC Gaming Case
+- Gaming RGB Case BARDO
+- Gaming RGB Case BARDO BD-8017.
+- Deepcool Matrexx 70 ADD-RGB 3F
+- DeepCool CK560 blek
+- MSI MPG GUNGNIR 111R
+- MSI MPG GUNGNIR 110R
+- Cougar Airface RGB Black
+- Case Huntkey S980 Tornado White + 4 x RGB Cooler
+- Case Huntkey S980 Tornado BLACK + 4 x RGB Cooler
+- Gaming RGB Case BARDO BD-8020.
+- AULA Gaming PC Case FZ007
+- AULA FZ008 + 3 RGB кулера в комплекте
+- Sharkoon intros the TG7M RGB ATX case
+- Sharkoon TG4M RGB Black
+- Sharkoon TG5 PRO RGB
+- Компьютерный корпус AVT Gaming E1 Glass
+- Gaming RGB Case BARDO BD-1907.
+- BD-8010.
+
+=== TELEFON AKSESUAR ===
+- Honor X5b 4/64GB
+- Honor X5b Plus 4/64
+- Honor X5b plus 4.128
+- Honor X6b 4.128
+- Honor X6b 6.256
+- Honor X7c 6.128
+- Honor X7c 8.256
+- Honor X8c 8.128
+- Honor X8b 8.128
+- Honor X8b 8.256
+- Honor X9c 8.256
+- Oteeto Tab 10 Chemistry 8/256GB
+- Oteeto Tab 10 Kids 6/128GB
+- samsung a9 4/64
+- Redmi Pad 2 4G/4 ГБ ОЗУ | 128 ГБ
+- Redmi Pad 2 4/128GB
+- Xiaomi Redmi Pad SE 8.7" 4G / 4+64 ГБ
+- Samsung Galaxy Tab A9+ 5G (X216) / 4 ГБ ОЗУ | 64 ГБ
+- avto kalla WKN-6801 Ture-C 5v3A
+- Кабель Samsung Type-C to Type-C Fast Charging Cable 3A
+- Xiaomi HyperCharge Type C - Type C Cable
+- Зарядное устройство Xiaomi 120W Charging Combo (Type-A) (MDY-13-EE)
+- СЗУ USB 3.0A USB+Type-C порт XIAOMI MDZ-13I GaN 67W
+- Зарядное устройство Xiaomi GaN 120W с кабелем Type-C to Type-C Premium
+- Зарядное устройство Xiaomi 67W Fast Charger MDY-12-ES.
+- Зарядное устройство Xiaomi Mi 55W GaN (MDY-12-EQ)
