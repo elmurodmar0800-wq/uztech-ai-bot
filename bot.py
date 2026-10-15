@@ -46,16 +46,6 @@ def load_products_db():
             return f.read()
     return ""
 
-def clean_word(word):
-    """O'zbek tilidagi ko'plik va kelishik qo'shimchalarini tozalash"""
-    w = word.lower()
-    suffixes = ["larimizni", "larimizga", "larimiz", "laridan", "lariga", "lardan", "larda", "larini", "larim", "lari", "larga", "larni", "lar", "da", "ga", "ni", "si"]
-    for sfx in suffixes:
-        if w.endswith(sfx) and len(w) - len(sfx) >= 3:
-            w = w[:-len(sfx)]
-            break
-    return w
-
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_first_name = update.effective_user.first_name
     welcome_text = (
@@ -88,67 +78,69 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(CONTACT_INFO, parse_mode="Markdown", disable_web_page_preview=True)
         return
 
-    # Qidiruvda e'tiborsiz qoldiriladigan so'zlar
-    stop_words = {
-        "bormi", "kerak", "bor", "edi", "haqida", "manga", "menga", "sizlarda", "aka", "do'stim", "qanaqalari", "qanaqa", "qaysi",
-        "fhd", "ips", "100hz", "144hz", "165hz", "180hz", "240hz", "hdmi", "vga", "usb", "ram", "ssd", "hdr", "1mc", "5mc"
-    }
-    
-    raw_words = re.findall(r'\w+', text_lower)
-    cleaned_words = [clean_word(w) for w in raw_words if w not in stop_words and len(w) > 1]
-    
-    # Asosiy tovar kategoriyalari
-    categories_map = {
-        "noutbuk": "NOUTBUK", "laptop": "NOUTBUK", "notebook": "NOUTBUK",
-        "printer": "PRINTER", "kserokopiya": "PRINTER",
-        "monitor": "MONITOR", "ekran": "MONITOR",
-        "videokarta": "VIDEOKARTA", "vga": "VIDEOKARTA",
-        "router": "WI-FI ROUTER", "wifi": "WI-FI ROUTER", "roter": "WI-FI ROUTER",
-        "mishka": "MISHKA", "klaviatura": "KLAVIATURA", "naushnik": "NAUSHNIK",
-        "keys": "KORPUS (KEYS)", "kompyuter": "KOMPYUTER", "telefon": "TELEFON"
-    }
+    # Kategoriya va kalit so'zlarni aniqlash
+    is_monitor = any(w in text_lower for w in ["monitor", "ekran", "pixel", "pixsel", "primier", "redmi"])
+    is_laptop = any(w in text_lower for w in ["noutbuk", "laptop", "notebook", "victus", "aspire", "zenbook", "vivobook", "tuf"])
+    is_printer = any(w in text_lower for w in ["printer", "kserokopiya", "skaner", "epson", "canon"])
+    is_router = any(w in text_lower for w in ["router", "wifi", "wi-fi", "roter", "tp-link", "tp_link", "mercusys"])
 
-    # Tekshiruv: foydalanuvchi faqat umumiy kategoriya so'raganmi?
-    found_categories = [categories_map[w] for w in cleaned_words if w in categories_map]
-    
-    # Agar foydalanuvchi biror aniq model (masalan: C50, L3350, 27PRM100, RTX, i5) yoza olmagan bo'lsa va faqat umumiy so'z bo'lsa:
-    has_specific_model = any(len(w) >= 3 and w not in categories_map for w in cleaned_words)
-    
-    if found_categories and not has_specific_model:
-        cat_name = found_categories[0]
+    # Ishora so'zlarni tozalash
+    stopwords = {"bormi", "kerak", "bor", "edi", "haqida", "manga", "menga", "sizlarda", "aka", "qanaqa", "qaysi", "monitor", "noutbuk", "printer", "router", "laptop"}
+    raw_words = re.findall(r'\w+', text_lower)
+    search_keywords = [w for w in raw_words if w not in stopwords and len(w) > 1]
+
+    # FAQAT "monitorlar bormi" yoki "noutbuk bormi" deb hech qanday brend yoki model yozilmagan bo'lsa:
+    if len(search_keywords) == 0 and (is_monitor or is_laptop or is_printer or is_router):
+        cat_name = "MONITOR" if is_monitor else ("NOUTBUK" if is_laptop else ("PRINTER" if is_printer else "ROUTER"))
         reply_text = (
             f"Do'konimizda turli xil **{cat_name}** modellari yetarlicha bor! 💻✨\n\n"
-            f"Sizga do'konimizda bor-yo'qligini aniq tekshirib berishim uchun **aynan qaysi brend yoki model** (masalan: i5, RTX 3050, L3350 va h.k.) kerakligini yozib bera olasizmi?"
+            f"Sizga do'konimizda bor-yo'qligini aniq tekshirib berishim uchun **aynan qaysi brend yoki model** (masalan: Pixel, Redmi, HP, Epson L3350 va h.k.) kerakligini yozib bera olasizmi?"
         )
         await update.message.reply_text(reply_text, parse_mode="Markdown", disable_web_page_preview=True)
         return
 
-    # Bazadan qidirish
     db_content = load_products_db()
     
-    if db_content and cleaned_words:
-        scored_matches = []
+    if db_content and (search_keywords or is_monitor or is_laptop or is_printer or is_router):
+        lines = db_content.split("\n")
+        matched_lines = []
+        current_section = ""
         
-        for line in db_content.split("\n"):
+        for line in lines:
             line_str = line.strip()
-            if not line_str or line_str.startswith("==="):
+            if line_str.startswith("==="):
+                current_section = line_str.upper()
                 continue
             
+            if not line_str:
+                continue
+                
             line_lower = line_str.lower()
             
-            match_score = 0
-            for kw in cleaned_words:
-                if kw in line_lower:
-                    match_score += 3 if len(kw) >= 3 else 1
-            
-            if match_score > 0:
-                scored_matches.append((match_score, line_str))
-        
-        scored_matches.sort(key=lambda x: x[0], reverse=True)
-        
-        if scored_matches:
-            matched_lines = [item[1] for item in scored_matches if item[0] >= 3] if any(item[0] >= 3 for item in scored_matches) else [item[1] for item in scored_matches]
-            found_text = "\n".join(matched_lines[:8])
+            # Agarda so'rov Monitor bo'yicha bo'lsa -> FAQAT === МОНИТОР === bo'limini qidiradi!
+            if is_monitor and "=== МОНИТОР ===" not in current_section:
+                continue
+            # Agarda so'rov Noutbuk bo'yicha bo'lsa -> FAQAT === НОУТБУК AIO === bo'limini qidiradi!
+            if is_laptop and "=== НОУТБУК AIO ===" not in current_section:
+                continue
+            # Agarda Printer bo'lsa -> FAQAT === ПРИНТЕР === bo'limidan qidiradi!
+            if is_printer and "=== ПРИНТЕР ===" not in current_section:
+                continue
+            # Agarda Router bo'lsa -> FAQAT === TP LINK WIFI === bo'limidan qidiradi!
+            if is_router and "=== TP LINK WIFI" not in current_section:
+                continue
+
+            # Agarda brand nomi yozilgan bo'lsa (masalan 'hp' yoki 'pixel' yoki 'redmi')
+            if search_keywords:
+                match_count = sum(1 for kw in search_keywords if kw in line_lower)
+                if match_count > 0:
+                    matched_lines.append(line_str)
+            else:
+                # Agar faqat is_monitor True bo'lsa, monitorlar bo'limidagi barcha modellarni oladi
+                matched_lines.append(line_str)
+
+        if matched_lines:
+            found_text = "\n".join(matched_lines[:10])
             reply_text = (
                 f"Ha, do'konimizda quyidagi mos modellar bor:\n\n{found_text}\n\n"
                 f"💳 **Narxlar va buyurtma berish uchun menejerlarimizga murojaat qiling:**\n"
@@ -158,7 +150,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await update.message.reply_text(reply_text, parse_mode="Markdown", disable_web_page_preview=True)
             return
 
-    # Aks holda umumiy javob
+    # Topilmasa
     reply_text = (
         f"Tushundim! Bu model bo'yicha do'konimizdagi mavjudlik va narxlarni quyidagi menejerlarimizdan aniqlashtirishingiz mumkin:\n\n"
         f"• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
