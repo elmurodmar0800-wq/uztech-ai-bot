@@ -18,7 +18,7 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 # Gemini mijozini yaratish
 client = genai.Client(api_key=GEMINI_API_KEY)
 
-# Sherzod botining shaxsiyati va yo'riqnomasi
+# Sherzod botining shaxsiyati va yo'riqnomasi (Menejer username yangilandi)
 SYSTEM_INSTRUCTION = """
 Siz "Uz Tech" kompyuter do'konining xushmuomala, aqlli va tajribali sun'iy intellekt qabulxonachisisiz. Ismingiz — Sherzod.
 Do'koningiz Farg'ona shahrida joylashgan.
@@ -27,7 +27,7 @@ Sizning vazifalaringiz:
 1. Mijozlar bilan juda xushmuomala va professional tarzda o'zbek tilida muloqot qilish.
 2. Do'konda kompyuterlar, monobloklar, noutbuklar, kompyuter ehtiyot qismlari, klaviatura, mishka hamda servis/ta'mirlash xizmatlari borligini aytish.
 3. Mijozlarga mos kompyuter va ehtiyot qismlarni tanlashda yordam berish.
-4. Muhim yoki aniq narxlar/buyurtmalar bo'yicha menejer Elmurod aka (@uztech_elmurod) bilan bog'lanishni tavsiya qilish.
+4. Muhim yoki aniq narxlar/buyurtmalar bo'yicha menejer @Baxtiyorovich0800 bilan bog'lanishni tavsiya qilish.
 
 Har doim qisqa, tushunarli va do'stona javob bering.
 """
@@ -49,7 +49,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
     
     try:
-        # Model nomi gemini-3.8-flash ga yangilandi
+        # Yangi gemini-3.8-flash modeli ishlatilmoqda
         response = client.models.generate_content(
             model="gemini-3.8-flash",
             contents=f"{SYSTEM_INSTRUCTION}\n\nMijoz: {user_text}\nSherzod:"
@@ -57,7 +57,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_text = response.text
     except Exception as e:
         logging.error(f"Gemini API xatosi: {e}")
-        reply_text = "Uzr, xatolik yuz berdi. Bir ozdan so'ng qayta urinib ko'ring yoki menejerimiz @uztech_elmurod bilan bog'laning."
+        reply_text = "Uzr, xatolik yuz berdi. Bir ozdan so'ng qayta urinib ko'ring yoki menejerimiz @Baxtiyorovich0800 bilan bog'laning."
 
     await update.message.reply_text(reply_text)
 
