@@ -27,7 +27,7 @@ def run_dummy_server():
     server = HTTPServer(('0.0.0.0', port), HealthCheckHandler)
     server.serve_forever()
 
-# Do'kon ma'lumotlari va kontaktlar
+# Do'kon ma'lumotlari va kontaktlar (Narxlar qat'iyan yozilmaydi, menejerlarga yo'naltiriladi)
 CONTACT_INFO = """
 📍 **Do'konimiz manzili:** Farg'ona shahri ([Google Maps lokatsiyasi](https://goo.gl/maps/NeV8ogH4ARYnovWi6))
 
@@ -42,12 +42,19 @@ CONTACT_INFO = """
 • 📸 [Instagram sahifamiz](https://www.instagram.com/uzteck/)
 """
 
+def load_products_db():
+    """Mahsulotlar bazasi faylini o'qish"""
+    if os.path.exists("products.txt"):
+        with open("products.txt", "r", encoding="utf-8") as f:
+            return f.read()
+    return "Hozircha baza bo'sh."
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_first_name = update.effective_user.first_name
     welcome_text = (
         f"Assalomu alaykum, {user_first_name} aka!\n\n"
         f"Men **Uz Tech** do'konining yordamchisi — **Saidazimxon**man. 🤖💻\n\n"
-        f"Sizga noutbuklar, videokartalar, printerlar yoki boshqa ehtiyot qismlar bo'yicha qanday yordam bera olaman?"
+        f"Sizga noutbuklar, printerlar, videokartalar, monitorlar yoki aksessuarlar bo'yicha qanday yordam bera olaman?"
     )
     await update.message.reply_text(welcome_text, parse_mode="Markdown", disable_web_page_preview=True)
 
@@ -59,7 +66,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     # 1. Kimligini so'raganda
     if any(word in text_lower for word in ["kimsiz", "sen kimsiz", "isming", "oting"]):
-        reply_text = "Men — 'Uz Tech' do'konining sun'iy intellekt yordamchisi Saidazimxonman! 🤖💻 Do'konimizdagi barcha texnikalar va mahsulotlar bo'yicha sizga ma'lumot berishga tayyorman."
+        reply_text = "Men — 'Uz Tech' do'konining sun'iy intellekt yordamchisi Saidazimxonman! 🤖💻 Do'konimizdagi barcha mahsulotlar va texnikalar bo'yicha ma'lumot berishga tayyorman."
 
     # 2. Salomlashish
     elif any(word in text_lower for word in ["salom", "assalom", "qalaysiz", "yaxshimisiz"]):
@@ -69,58 +76,32 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif any(word in text_lower for word in ["manzil", "adres", "lokatsiya", "qayerda", "kontakt", "telefon", "ish vaqti", "nechigacha", "vaqt", "ishlaysiz", "shanba", "yakshanba", "kun", "ishda"]):
         reply_text = CONTACT_INFO
 
-    # 4. Printerlar, katrij va bo'yoqlar
-    elif any(word in text_lower for word in ["printer", "l3350", "l18050", "mf3010", "kserokopiya", "skaner", "kraska", "katrij", "kartrij"]):
-        reply_text = (
-            "Ha, albatta! Do'konimizda ofis va uy uchun har xil turdagi printerlar (shu jumladan L3350, L18050, MF3010 modellari), katrijlar va bo'yoqlar mavjud.\n\n"
-            "Aniq narxlari va buyurtma berish uchun menejerimiz bilan bog'lanishingiz mumkin:\n"
-            "• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)"
-        )
-
-    # 5. Videokartalar (vidio karta, 3050, rx, rtx va h.k.)
-    elif any(word in text_lower for word in ["videokarta", "vidio karta", "video karta", "3050", "4060", "rx", "rtx", "gtx"]):
-        reply_text = (
-            "Ha, do'konimizda o'yinlar va professional ishlar uchun har xil turdagi videokartalar (jumladan RTX 3050 va boshqa modellar) mavjud!\n\n"
-            "Ularning narxlari va mavjudligini aniqlash uchun menejerlarimizga yozishingiz mumkin:\n"
-            "• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
-            "• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
-        )
-
-    # 6. Noutbuk, kompyuter, monoblok va ichki qismlar
-    elif any(word in text_lower for word in ["noutbuk", "kompyuter", "notebook", "laptop", "pc", "noutbukchi", "monoblok", "protsessor", "prosesor", "operativka", "ram", "ssd", "hdd", "keys"]):
-        reply_text = (
-            "Ha, do'konimizda o'qish, ofis va o'yinlar uchun noutbuklar, kompyuterlar, monobloklar hamda barcha turdagi butlovchi qismlar yetarli miqdorda bor!\n\n"
-            "Sizga kerak bo'lgan texnika va uning narxlarini kelishish uchun menejerlarimizga yozishingiz mumkin:\n"
-            "• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
-            "• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
-        )
-
-    # 7. Tarmoq jihozlari (Wi-Fi router, kommutator, switch)
-    elif any(word in text_lower for word in ["wifi", "wi-fi", "router", "rotir", "rotor", "internet", "kommutator", "switch", "svich"]):
-        reply_text = (
-            "Ha, do'konimizda uy va ofis uchun Wi-Fi routerlar, kommutatorlar (switch) hamda tarmoq qurilmalari mavjud!\n\n"
-            "Ularning turlari va narxlarini bilish uchun menejerlarimizga murojaat qilishingiz mumkin:\n"
-            "• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
-            "• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
-        )
-
-    # 8. Periferiya va aksessuarlar
-    elif any(word in text_lower for word in ["mishka", "mishqa", "klaviatura", "klavyatura", "kovrik", "sumka", "adapter", "zaryadnik", "monitor"]):
-        reply_text = (
-            "Ha, do'konimizda monitorlar, mishka, klaviatura, kovriklar, noutbuk sumkalari va adapterlar kabi barcha turdagi aksessuarlar bor!\n\n"
-            "Tanlash va narxlarni bilish uchun menejerlarimiz bilan bog'lanishingiz mumkin:\n"
-            "• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
-            "• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
-        )
-
-    # 9. Boshqa barcha holatlar uchun
     else:
-        reply_text = (
-            "Tushundim! Bu mahsulot yoki xizmat bo'yicha aniq ma'lumot va narxlarni quyidagi menejerlarimizdan olishingiz mumkin:\n\n"
-            "• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
-            "• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)\n\n"
-            "Shuningdek, barcha yangi kelgan tovarlarimizni [Telegram kanalimizda](https://t.me/uztech_computers) kuzatib borishingiz mumkin!"
-        )
+        # Bazadan kalit so'z bo'yicha qidirish
+        db_content = load_products_db()
+        matched_lines = []
+        keywords = text_lower.split()
+        
+        for line in db_content.split("\n"):
+            if any(kw in line.lower() for kw in keywords if len(kw) > 2):
+                matched_lines.append(line)
+        
+        if matched_lines:
+            # Ko'p chiqib ketmasligi uchun eng ko'pi bilan 8 ta mos tovarni ko'rsatamiz
+            found_text = "\n".join(matched_lines[:8])
+            reply_text = (
+                f"Ha, do'konimizda shular mavjud:\n\n{found_text}\n\n"
+                f"💳 **Narxlar va buyurtma bo'yicha aniq ma'lumot olish uchun menejerlarimizga murojaat qiling:**\n"
+                f"• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
+                f"• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)"
+            )
+        else:
+            reply_text = (
+                f"Tushundim! Bu mahsulot yoki uning narxi bo'yicha aniq ma'lumotni quyidagi menejerlarimizdan olishingiz mumkin:\n\n"
+                f"• [Elmurod](https://t.me/wero_7708): [+998 93 641 0800](tel:+998936410800)\n"
+                f"• [Axrorbek](https://t.me/A9769): [+998 93 976 9769](tel:+998939769769)\n\n"
+                f"Shuningdek, barcha yangi kelgan tovarlarimizni [Telegram kanalimizda](https://t.me/uztech_computers) kuzatib borishingiz mumkin!"
+            )
 
     await update.message.reply_text(reply_text, parse_mode="Markdown", disable_web_page_preview=True)
 
