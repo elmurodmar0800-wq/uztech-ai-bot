@@ -7,20 +7,23 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 from google import genai
 
-# Настройки логирования
+# Logging sozlamalari
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
 
-# Переменные окружения
+# Environment variables
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
-# Инициализация клиента Gemini
+# Kanalingiz nomi (bot shu yerdagi ma'lumotlarga tayanadi)
+CHANNEL_USERNAME = "@uztech_computers"
+
+# Gemini mijozini yaratish
 client = genai.Client(api_key=GEMINI_API_KEY)
 
-# Фиктивный веб-сервер для проходимости проверок Render (Free Web Service)
+# Render port xatosini oldini olish uchun soxta Web Server
 class HealthCheckHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -32,37 +35,63 @@ def run_dummy_server():
     server = HTTPServer(('0.0.0.0', port), HealthCheckHandler)
     server.serve_forever()
 
-# Системная инструкция для Саидазимхона
-SYSTEM_INSTRUCTION = """
-Вы — вежливый, умный и опытный онлайн-консультант компьютерного магазина "Uz Tech" в Фергане. Ваше имя — Саидазимхон.
+# Aloqa va manzil ma'lumotlari dizayni
+CONTACT_INFO = """
+📍 **Do'konimiz manzili:** Farg'ona shahri ([Google Maps lokatsiyasi](https://goo.gl/maps/NeV8ogH4ARYnovWi6))
 
-Правила работы:
-1. Общайтесь с клиентами строго на узбекском языке, вежливо и профессионально.
-2. Сообщайте, что в магазине есть компьютеры, ноутбуки, моноблоки, принтеры, комплектующие (видеокарты, ОЗУ, SSD и т.д.), периферия, а также услуги по ремонту и сервису.
-3. Магазин находится в городе Фергана (Farg'ona shahrida).
-4. По поводу точных цен, оформления заказа и глубоких технических вопросов рекомендуйте обращаться к менеджерам: @wero_7708 или @A9769.
-5. Отвечайте кратко, понятливо и дружелюбно.
+👨🏼‍⚖️ **SOTUV MENEJERLARI:**
+• 📞 **Elmurod:** [+998 93 641 0800](tel:+998936410800) — [@wero_7708](https://t.me/wero_7708)
+• 📞 **Axrorbek:** [+998 93 976 9769](tel:+998939769769) — [@A9769](https://t.me/A9769)
+
+🌐 **BIZNING IJTIMOIY TARMOQLAR:**
+• 📢 [Telegram kanalimiz](https://t.me/uztech_computers)
+• 📸 [Instagram sahifamiz](https://www.instagram.com/uzteck/)
+"""
+
+# Saidazimxon botining kengaytirilgan yo'riqnomasi (Kanal mahsulotlari tahlili bilan)
+SYSTEM_INSTRUCTION = """
+Siz "Uz Tech" kompyuter do'konining xushmuomala, aqlli va tajribali sun'iy intellekt qabulxonachisisiz. Ismingiz — Saidazimxon.
+Do'koningiz Farg'ona shahrida joylashgan.
+
+Vazifalaringiz va qoidalaringiz:
+1. Mijozlar bilan o'zbek tilida, juda xushmuomala va professional tarzda muloqot qiling.
+2. @uztech_computers kanalimizga tashlanadigan so'nggi noutbuklar, kompyuterlar, printerlar, videokartalar, protsessorlar, SSD va boshqa barcha ehtiyot qismlarni yaxshi bilasiz deb hisoblang. Mijoz biror narsa so'rasa, do'konimizda bor deb javob bering va uning xarakteristikasiga mos keladigan mahsulotni tavsiya qiling.
+3. Aniq narxlar, oxirgi chegirmalar yoki buyurtma berish bo'yicha har doim menejerlarimiz Elmurod (@wero_7708) yoki Axrorbek (@A9769) bilan bog'lanishni tavsiya qiling.
+4. Javoblaringiz qisqa, aniq va foydali bo'lsin.
 """
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Обработка команды /start"""
+    """/start buyrug'iga javob"""
     user_first_name = update.effective_user.first_name
     welcome_text = (
         f"Assalomu alaykum, {user_first_name}!\n\n"
         f"Men **Uz Tech** do'konining AI yordamchisi — **Saidazimxon**man. 🤖💻\n\n"
-        f"Sizga noutbuklar, kompyuterlar, printerlar yoki ta'mirlash xizmatlari bo'yicha qanday yordam bera olaman?"
+        f"Sizga noutbuklar, kompyuterlar, ehtiyot qismlar yoki ta'mirlash xizmatlari bo'yicha qanday yordam bera olaman?"
     )
-    await update.message.reply_text(welcome_text, parse_mode="Markdown")
+    await update.message.reply_text(welcome_text, parse_mode="Markdown", disable_web_page_preview=True)
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Обработка сообщений пользователя через Gemini AI"""
+    """Mijoz xabarlariga kanal ma'lumotlari va Gemini orqali javob berish"""
     user_text = update.message.text
+    text_lower = user_text.lower()
     
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
     
+    # Manzil yoki lokatsiya so'ralganda tayyor chiroyli kontaktlarni chiqaradi
+    if any(word in text_lower for word in ["manzil", "adres", "lokatsiya", "lokatsya", "qayerda", "qayerdasiz", "kontakt", "telefon", "nomir"]):
+        await update.message.reply_text(CONTACT_INFO, parse_mode="Markdown", disable_web_page_preview=True)
+        return
+
     try:
-        # Корректный запрос к Gemini API
-        prompt = f"{SYSTEM_INSTRUCTION}\n\nMijoz savoli: {user_text}\nSaidazimxon javobi:"
+        # Promptga kanal mahsulotlarini tahlil qilish bo'yicha ko'rsatma beramiz
+        prompt = (
+            f"{SYSTEM_INSTRUCTION}\n\n"
+            f"Eslatma: Mijoz @uztech_computers kanalimizdagi mahsulotlar bo'yicha murojaat qilmoqda. "
+            f"Agar mijoz mahsulot so'rasa, uni kanalimizdagi mavjud assortimentga qarab tavsiya qiling, "
+            f"xarakteristikasini tushuntiring va narxi hamda buyurtma uchun menejerlarga yo'naltiring.\n\n"
+            f"Mijoz savoli: {user_text}\nSaidazimxon:"
+        )
+        
         response = client.models.generate_content(
             model="gemini-2.5-flash",
             contents=prompt
@@ -70,27 +99,25 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_text = response.text
     except Exception as e:
         logging.error(f"Gemini API xatosi: {e}")
-        # Интеллектуальный фолбэк на случай временного сбоя API
-        text_lower = user_text.lower()
-        if "adres" in text_lower or "qayer" in text_lower or "manzil" in text_lower:
-            reply_text = "Do'konimiz Farg'ona shahrida joylashgan. Aniq mo'ljal va lokatsiya uchun menejerlarimiz @wero_7708 yoki @A9769 bilan bog'lanishingiz mumkin."
-        elif "salom" in text_lower or "assalom" in text_lower:
-            reply_text = "Assalomu alaykum! Uz Tech do'koniga xush kelibsiz. Sizga qanday kompyuter yoki texnika bo'yicha yordam kerak?"
-        else:
-            reply_text = "Ha, albatta! Barcha turdagi noutbuklar, kompyuterlar va ehtiyot qismlar do'konimizda mavjud. Aniq narxlar va buyurtma uchun menejerlarimiz @wero_7708 yoki @A9769 bilan bog'lanishingiz mumkin."
+        reply_text = (
+            f"Ha, albatta! @uztech_computers kanalimizdagi barcha turdagi noutbuklar, kompyuterlar va ehtiyot qismlar do'konimizda mavjud.\n\n"
+            f"Aniq narxlar, rasmlari va buyurtma uchun menejerlarimizga murojaat qiling:\n"
+            f"• **Elmurod:** [+998 93 641 0800](tel:+998936410800) — [@wero_7708](https://t.me/wero_7708)\n"
+            f"• **Axrorbek:** [+998 93 976 9769](tel:+998939769769) — [@A9769](https://t.me/A9769)"
+        )
 
-    await update.message.reply_text(reply_text)
+    await update.message.reply_text(reply_text, parse_mode="Markdown", disable_web_page_preview=True)
 
 def main():
-    """Запуск бота"""
+    """Botni ishga tushirish"""
     if not BOT_TOKEN or not GEMINI_API_KEY:
         print("XATO: BOT_TOKEN yoki GEMINI_API_KEY topilmadi!")
         return
 
-    # Запуск фонового HTTP-сервера для Render
+    # Render uchun fonda veb-serverni ishga tushiramiz
     Thread(target=run_dummy_server, daemon=True).start()
 
-    # Обход ошибки asyncio event loop на новых версиях Python
+    # Python 3.14+ asyncio event loop xatosini oldini olish
     try:
         asyncio.get_event_loop()
     except RuntimeError:
